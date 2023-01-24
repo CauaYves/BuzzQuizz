@@ -1,4 +1,4 @@
-<h1 align='center'>NOME DO PROJETO</h1>  
+<h1 align='center'>Buzz Quizz</h1>  
 <h6 align='center'>descrição abreviada e resumida</h6>   
 
 ## 🛠Tecnologias  
