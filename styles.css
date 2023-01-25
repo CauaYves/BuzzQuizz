@@ -4,10 +4,12 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    outline: 0;
 }
 
 body{
     font-family: 'Roboto', sans-serif;
+    background-color: #FAFAFA;
 }
 
 /*Começo - Fernando CSS*/
@@ -34,9 +36,6 @@ body{
     line-height: 46px;
     color: #FFFFFF;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/background-title.png");        
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 /**INÍCIO CONFIGS PERGUNTAS*/
 .questions{
@@ -173,11 +172,320 @@ body{
 }
 
 /*Fim - Fernando CSS*/
+/*Começo - Yves CSS*/
+
+#creation-quizz header{
+    height: 69px;
+    margin-bottom: 37px;
+    background-color: #EC362D;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 1px 5px 8px rgba(0, 0, 0, 0.212);
+}
+header >h1{
+    color: #FFFFFF;
+}
+/*creation quizz styles*/
+#creation-quizz{
+   display: block;
+     /*display: block; */
+}
+#creation-quizz > h4{
+    text-align: center;
+    margin-bottom: 29px;
+}
+
+#creation-quizz form{
+    background-color: #FFFFFF;
+    box-shadow: 1px 5px 7px rgba(0, 0, 0, 0.091);
+    margin-bottom: 22px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#creation-quizz form > input{
+    border: 1px solid #D1D1D1;
+
+    margin-bottom: 9px;
+    padding-left: 7px;
+    height: 46px;
+    width: calc(100% - 16px);
+
+    color: #D1D1D1;
+
+    text-align: left;
+    font-style: italic;
+    font-size: 19px;
+
+    border-radius: 5px;
+}
+.title-form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: calc(100% - 20px);
+    height: 74px;
+}
+#open-icon{
+    height: 20px;
+    width: 26px;
+}
+.btn-container{
+    width: 100%;
+    margin: 40px 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    background-color: #EC362D;
+    color: #FFFFFF;
+
+    height: 54px;
+    width: 354px;
+    border-radius: 15px;
+
+    font-size: 19px;
+}
+
+#lvl-description{
+    border-radius: 5px;
+    border: 1px solid #D1D1D1;
+    width: calc(100% - 18px);
+    margin-bottom: 30px;
+
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+}
+/*creation quizz styles ending*/
+
+
+/*Fim - Yves CSS*/
+
+/*Começo - Barci CSS*/
+
+.screen-list-quizzes{
+    display: none;
+    justify-content: center;
+}
+
+.screen-list-quizzes header{
+    width: 100%;
+    height: 69px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EC362D;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.screen-list-quizzes header>h1{
+    width: 176px;
+    height: 43px;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 43px;
+    color: #FFFFFF;
+}
+
+.screen-list-quizzes main{
+    width: 1051px;
+    margin-top: 69px;
+}
+
+.area-creation-quizz{
+    width: 100%;
+    height: 181px;
+    margin: 77px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FAFAFA;
+    border: 1px dashed #D4D4D4;
+    border-radius: 5px;
+}
+
+.area-creation-quizz>p{
+    width: 250px;
+    height: 107px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center; 
+    color: #B9B9B9;
+    margin: 7px 0px;
+}
+
+.area-creation-quizz button{
+    width: 151px;
+    height: 40px;
+    background-color: #FAFAFA;
+    border: 1px dashed #EC362D;
+    border-radius: 50px;
+    font-weight: 400;
+    font-size: 21px;
+    color: #EC362D;
+}
+
+.area-my-quizzes{
+    display: none;
+    width: 100%;
+    margin-top: 65px;
+    margin-bottom: 48px;
+}
+
+.area-my-quizzes>div:nth-of-type(1){
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.area-my-quizzes div>p{
+    width: 122px;
+    height: 23px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+    margin-right: 17px;
+}
+
+.area-my-quizzes button{
+    width: 31px;
+    height: 30px;
+    border-radius: 500px;
+    background: #EC362D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.area-my-quizzes img{
+    width: 13px;
+    height: 13px;
+}
+
+.area-all-quizzes{
+    width: 100%;
+    margin-bottom: 211px;
+}
+
+.area-all-quizzes>p{
+    width: 158px;
+    height: 23px;
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+.area-all-quizzes>div,
+.my-quizzes{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-quizz{
+    width: 340px;
+    height: 181px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(imagens/Simpsons.jpg);
+    background-size: cover;
+    border-radius: 5px;
+    display: flex;
+    align-items: end;
+    margin-right: 15px;
+    margin-bottom: 12px;
+}
+
+.card-quizz:nth-child(3n){
+    margin-right: 0px
+}
+
+.card-quizz h2{
+    width: 301px;
+    height: 54px;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    margin-left: 18px;
+}
+
+
+/*Fim - Barci CSS*/
 
 .active{
     display:flex;
 }
 
+@media (max-width: 1100px) {
+
+    /*Começo - Barci CSS*/
+
+    .screen-list-quizzes main{
+        max-width: 340px;
+    }
+
+    .area-my-quizzes{
+        margin-top: 34px;
+        margin-bottom: 38px;
+    }
+
+    .area-my-quizzes>div:nth-of-type(1){
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 13px;
+    }
+
+    .card-quizz{
+        width: 340px;
+        margin-right: 0px;
+    }
+
+    .area-creation-quizz{
+        margin-top: 31px;
+        margin-bottom: 35px;
+    }
+
+    /*Fim - Barci CSS*/
+}
+
+@media (max-width: 340px) {
+    .screen-list-quizzes main{
+        width: 100%;
+    }
+
+    .card-quizz{
+        width: 100%;
+        margin-right: 0px;
+    }
+}
 
 
 

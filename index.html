@@ -18,7 +18,7 @@
 <body>
     <!--Começo - Fernando HTML-->
     <!--quizz page screen-->
-    <div class="tela-quizz active">
+    <div class="tela-quizz">
         <div class="flex">
         <header><h1>BuzzQuizz</h1></header>        
             <section class="questions">
@@ -70,8 +70,193 @@
         </div>                  
     </div>
     <!--Fim - Fernando HTML-->
+
+    <!--Começo - HTML Barci-->
+    <div class="screen-list-quizzes">
+        <header>
+            <h1>BuzzQuizz</h1>
+        </header>
+        <main>
+            <section class="area-creation-quizz">
+                <p>Você não criou nenhum quizz ainda :(</p>
+                <button>Criar Quizz</button>
+            </section>
+            <section class="area-my-quizzes">
+                <div>
+                    <p>Seus Quizzes</p>
+                    <button>
+                        <img src="imagens/Vector.png"/>
+                    </button>
+                </div>
+
+                <div class="my-quizzes">
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="area-all-quizzes">
+                <p>Todos os Quizzes</p>
+                <div>
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+
+                    <div class="card-quizz">
+                        <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!--Fim - HTML Barci-->
+
+    <!--Começo - HTML Yves-->
+    <!--creation quizz screen-->
+    <section id="creation-quizz">
+        <header>
+            <h1>BuzzQuizz</h1>
+        </header>
+        <h4>Comece pelo começo</h4>
+        <form>
+            <!--first form-->
+            <div class="title-form">
+                <h4>Pergunta 1</h4>
+                <ion-icon name="open-outline" id="open-icon"></ion-icon>
+            </div>
+            <input type="text" id="iquestion" placeholder="Texto da pergunta">
+            <input type="text" id="ibackground" placeholder="Cor de fundo da pergunta">
+            <!--second form-->
+            <div class="title-form">
+                <h4>Resposta correta</h4>
+            </div>
+            <input type="text" id="ianswer" placeholder="Resposta correta">
+            <input type="text" placeholder="URL da imagem">
+            <!--third form-->
+            <div class="title-form">
+                <h4>Respostas incorretas</h4>
+            </div>
+            <input type="text" id="iwrong-answer" placeholder="Resposta incorreta 1">
+            <input type="text" id="iwrong-answer-url" placeholder="URL da imagem 1">
+            <br>
+            <br>
+            <input type="text" id="iwrong-answer" placeholder="Resposta incorreta 2">
+            <input type="text" id="iwrong-answer" placeholder="URL da imagem 2">
+            <br>
+            <br>
+            <input type="text" id="iwrong-answer" placeholder="Resposta incorreta 3">
+            <input type="text" id="iwrong-answer" placeholder="URL da imagem 3">
+            <br>
+            <br>
+        </form>
+        <form>
+            <!--first form-->
+            <div class="title-form">
+                <h4>Pergunta 1</h4>
+                <ion-icon name="open-outline" id="open-icon"></ion-icon>
+            </div>
+            <input type="text" id="iquestion" placeholder="Texto da pergunta">
+            <input type="text" id="ibackground" placeholder="Cor de fundo da pergunta">
+            <!--second form-->
+            <div class="title-form">
+                <h4>Resposta correta</h4>
+            </div>
+            <input type="text" id="ianswer" placeholder="Resposta correta">
+            <input type="text" placeholder="URL da imagem">
+            <!--third form-->
+            <div class="title-form">
+                <h4>Respostas incorretas</h4>
+            </div>
+            <input type="text" id="iwrong-answer" placeholder="Resposta incorreta 1">
+            <input type="text" id="iwrong-answer-url" placeholder="URL da imagem 1">
+            <br>
+            <br>
+            <input type="text" id="iwrong-answer" placeholder="Resposta incorreta 2">
+            <input type="text" id="iwrong-answer" placeholder="URL da imagem 2">
+            <br>
+            <br>
+            <input type="text" id="iwrong-answer" placeholder="Resposta incorreta 3">
+            <input type="text" id="iwrong-answer" placeholder="URL da imagem 3">
+            <br>
+            <br>
+        </form>
+        <form>
+            <!--first form-->
+            <div class="title-form">
+                <h4>Pergunta 1</h4>
+                <ion-icon name="open-outline" id="open-icon"></ion-icon>
+            </div>
+            <input type="text" id="iquestion" placeholder="Texto da pergunta">
+            <input type="text" id="ibackground" placeholder="Cor de fundo da pergunta">
+            <!--second form-->
+            <div class="title-form">
+                <h4>Resposta correta</h4>
+            </div>
+            <input type="text" id="ianswer" placeholder="Resposta correta">
+            <input type="text" placeholder="URL da imagem">
+            <!--third form-->
+            <div class="title-form">
+                <h4>Respostas incorretas</h4>
+            </div>
+            <input type="text" id="iwrong-answer" placeholder="Resposta incorreta 1">
+            <input type="text" id="iwrong-answer-url" placeholder="URL da imagem 1">
+            <br>
+            <br>
+            <input type="text" id="iwrong-answer" placeholder="Resposta incorreta 2">
+            <input type="text" id="iwrong-answer" placeholder="URL da imagem 2">
+            <br>
+            <br>
+            <input type="text" id="iwrong-answer" placeholder="Resposta incorreta 3">
+            <input type="text" id="iwrong-answer" placeholder="URL da imagem 3">
+            <br>
+            <br>
+        </form>
+    </section>
+    <div id="btn-container">
+        <button id="finish-btn">Finalizar quiz</button>
+    </div>
+    <!--Fim - HTML Yves-->
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts.js"></script>
 </body>
-
 </html>
