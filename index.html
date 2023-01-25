@@ -17,6 +17,7 @@
 
 <body>
 
+    <!--creation quizz screen-->
     <section id="creation-quizz">
         <header>
             <h1>BuzzQuizz</h1>
@@ -116,12 +117,53 @@
             <br>
         </form>
     </section>
-    <div id="btn-container">
-        <button id="finish-btn">Finalizar quiz</button>
-    </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="scripts.js"></script>
-</body>
+        <!--creation quizz screen ending-->
 
+    <section id="level-quizz">
+        <!--first level-->
+        <header>
+            <h1>BuzzQuizz</h1>
+            <ion-icon name="open-outline" id="open-icon"></ion-icon>
+        </header>
+        <form>
+            <div class="title-form">
+                <h4>Nivel 1</h4>
+                <ion-icon name="open-outline" id="open-icon"></ion-icon>
+            </div>
+
+            <input type="text" id="level-title" placeholder="Título do nível">
+            <input type="text" id="min-hit-percent" placeholder="% de acerto mínima">
+            <input type="text" id="img-url-lvl" placeholder="URL da imagem do nível">
+            <textarea id="lvl-description" cols="30" rows="10"></textarea>
+        </form>
+        <!--second level -->
+        <form>
+            <div class="title-form">
+                <h4>Nivel 2</h4>
+                <ion-icon name="open-outline" id="open-icon"></ion-icon>
+            </div>
+
+            <input type="text" id="level-title" placeholder="Título do nível">
+            <input type="text" id="min-hit-percent" placeholder="% de acerto mínima">
+            <input type="text" id="img-url-lvl" placeholder="URL da imagem do nível">
+            <textarea id="lvl-description" cols="30" rows="10"></textarea>
+        </form>
+        <!--third level -->
+        <form>
+            <div class="title-form">
+                <h4>Nivel 3</h4>
+                <ion-icon name="open-outline" id="open-icon"></ion-icon>
+            </div>
+
+            <input type="text" id="level-title" placeholder="Título do nível">
+            <input type="text" id="min-hit-percent" placeholder="% de acerto mínima">
+            <input type="text" id="img-url-lvl" placeholder="URL da imagem do nível">
+            <textarea id="lvl-description" cols="30" rows="10"></textarea>
+        </form>
+        <div class="btn-container">
+            <button class="btn">
+                Finalizar quizz
+            </button>
+        </div>
+    </section>
 </html>

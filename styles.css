@@ -26,8 +26,13 @@ header{
 
     box-shadow: 1px 5px 8px rgba(0, 0, 0, 0.212);
 }
+header >h1{
+    color: #FFFFFF;
+}
+/*creation quizz styles*/
 #creation-quizz{
-    display: block; /*display: none;*/
+   display: none;
+     /*display: block; */
 }
 #creation-quizz > h4{
     text-align: center;
@@ -74,7 +79,7 @@ form > input{
     height: 20px;
     width: 26px;
 }
-#btn-container{
+.btn-container{
     width: 100%;
     margin: 40px 0px;
 
@@ -82,7 +87,7 @@ form > input{
     align-items: center;
     justify-content: center;
 }
-#finish-btn{
+.btn{
     background-color: #EC362D;
     color: #FFFFFF;
 
@@ -92,4 +97,17 @@ form > input{
 
     font-size: 19px;
 }
+
+#lvl-description{
+    border-radius: 5px;
+    border: 1px solid #D1D1D1;
+    width: calc(100% - 18px);
+    margin-bottom: 30px;
+
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+}
+/*creation quizz styles ending*/
+
 
