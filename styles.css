@@ -35,7 +35,10 @@ body{
     font-size: 39px;
     line-height: 46px;
     color: #FFFFFF;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/background-title.png");        
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/background-title.png");
+    display:flex;
+    justify-content: center;
+    align-items: center;        
 }
 /**INÍCIO CONFIGS PERGUNTAS*/
 .questions{
@@ -189,7 +192,6 @@ header >h1{
     color: #FFFFFF;
 }
 /*creation quizz styles*/
-
 #creation-quizz > h4{
     text-align: center;
     margin-bottom: 29px;
