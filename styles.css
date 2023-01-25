@@ -25,11 +25,14 @@ body{
 
     box-shadow: 1px 5px 8px rgba(0, 0, 0, 0.212);
 }
-
-#creation-quizz{
-    display: block;
+header >h1{
+    color: #FFFFFF;
 }
-
+/*creation quizz styles*/
+#creation-quizz{
+   display: none;
+     /*display: block; */
+}
 #creation-quizz > h4{
     text-align: center;
     margin-bottom: 29px;
@@ -45,7 +48,6 @@ body{
     align-items: center;
     flex-direction: column;
 }
-
 #creation-quizz form > input{
     border: 1px solid #D1D1D1;
 
@@ -62,7 +64,6 @@ body{
 
     border-radius: 5px;
 }
-
 .title-form{
     display: flex;
     align-items: center;
@@ -71,13 +72,11 @@ body{
     width: calc(100% - 20px);
     height: 74px;
 }
-
 #open-icon{
     height: 20px;
     width: 26px;
 }
-
-#btn-container{
+.btn-container{
     width: 100%;
     margin: 40px 0px;
 
@@ -85,8 +84,7 @@ body{
     align-items: center;
     justify-content: center;
 }
-
-#finish-btn{
+.btn{
     background-color: #EC362D;
     color: #FFFFFF;
 
@@ -97,8 +95,20 @@ body{
     font-size: 19px;
 }
 
-/*Fim - Yves CSS*/
+#lvl-description{
+    border-radius: 5px;
+    border: 1px solid #D1D1D1;
+    width: calc(100% - 18px);
+    margin-bottom: 30px;
 
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+}
+/*creation quizz styles ending*/
+
+
+/*Fim - Yves CSS*/
 
 /*Começo - Barci CSS*/
 
@@ -316,3 +326,5 @@ body{
         margin-right: 0px;
     }
 }
+
+
