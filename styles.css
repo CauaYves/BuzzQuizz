@@ -26,10 +26,10 @@ header{
 
     box-shadow: 1px 5px 8px rgba(0, 0, 0, 0.212);
 }
-section{
+#creation-quizz{
     display: block; /*display: none;*/
 }
-section > h4{
+#creation-quizz > h4{
     text-align: center;
     margin-bottom: 29px;
 }
@@ -73,5 +73,23 @@ form > input{
 #open-icon{
     height: 20px;
     width: 26px;
+}
+#btn-container{
+    width: 100%;
+    margin: 40px 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#finish-btn{
+    background-color: #EC362D;
+    color: #FFFFFF;
+
+    height: 54px;
+    width: 354px;
+    border-radius: 15px;
+
+    font-size: 19px;
 }
 
