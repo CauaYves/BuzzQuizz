@@ -190,8 +190,6 @@ header >h1{
 }
 /*creation quizz styles*/
 #creation-quizz{
-   display: block;
-     /*display: block; */
 }
 #creation-quizz > h4{
     text-align: center;
