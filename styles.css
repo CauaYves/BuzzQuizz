@@ -189,8 +189,7 @@ header >h1{
     color: #FFFFFF;
 }
 /*creation quizz styles*/
-#creation-quizz{
-}
+
 #creation-quizz > h4{
     text-align: center;
     margin-bottom: 29px;
@@ -234,7 +233,7 @@ header >h1{
     height: 20px;
     width: 26px;
 }
-.btn-container{
+#btn-container{
     width: 100%;
     margin: 40px 0px;
 
@@ -242,7 +241,7 @@ header >h1{
     align-items: center;
     justify-content: center;
 }
-.btn{
+#finish-btn{
     background-color: #EC362D;
     color: #FFFFFF;
 
