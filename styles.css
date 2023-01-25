@@ -10,9 +10,174 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-.active{
-    display: flex;
+/*Começo - Fernando CSS*/
+.tela-quizz{
+    display:none;
 }
+.tela-quizz header h1{
+    width:100%;
+    height:69px;
+    font-size: 37px;
+    line-height: 43px;
+    color: #FFFFFF;
+    background-color: #EC362D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.title-quizz h2{
+    width:100%;
+    height:227px;
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 46px;
+    color: #FFFFFF;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/background-title.png");        
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/**INÍCIO CONFIGS PERGUNTAS*/
+.questions{
+    width:100%;
+}
+.question-box{
+    width:759px;
+    height:676px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);    
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 40px auto;
+    padding: 30px 35px;
+}
+.question-title{
+    width:688.16px;
+    height:137.99px;
+    background-color: #434CA0;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    text-align: center;    
+    color: #FFFFFF;
+}
+.answers{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px; /**Distância para as perguntas nunca colarem no título, independente do tamanho*/
+    gap:20px;
+}
+.answers .option{
+    max-width:329.91px;
+}
+.answers img{
+    width:329.91px;
+    height:175.2px;
+}
+.answers p{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    margin: 8px 0;
+}
+
+.question-box div#correct{    
+    color:#009C22;
+    opacity:1;
+}
+.question-box .disabled div{
+    opacity:0.3;
+}
+.question-box .disabled{
+    color:#FF4B4B;
+}
+
+
+/**INÍCIO CONFIGS RESULTADO FINAL*/
+
+.results-box{
+    width: 759px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    margin: 0 auto 42px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+}
+.results-title{
+    width: 727px;
+    height: 99px;
+    background-color:#EC362D;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+.results-content{
+    display:flex;
+    margin-top: 18px;
+    gap: 20px;
+}
+.results-content img{
+    width:364px;
+    height:273;
+}
+.results-content p{
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 25px;
+    color: #484848;
+}
+/**INÍCIO BOTÕES FIM DE QUIZZ*/
+.quizz-end{
+    height: 150px;    
+    gap:15px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.button-quizz-restart{
+    background: #EC362D;
+    border-radius: 15px;
+    color: #FFF5F4    
+}
+.button-quizz-exit{    
+    background: transparent;
+    color:#818181
+}
+.button-quizz-exit,.button-quizz-restart{
+    width: 260.38px;
+    height: 52px;
+    font-weight: 400;
+    font-size: 21px;
+    text-align: center;
+}
+.flex{
+    flex-direction: column;
+    margin: 0 auto;
+    width:100%;
+}
+
+/*Fim - Fernando CSS*/
+
+.active{
+    display:flex;
+}
+
 
 
 
