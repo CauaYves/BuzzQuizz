@@ -182,7 +182,7 @@ body{
     display: none;
 }
 
-#creation-quizz header{
+#creation-quizz > header, #quizzlvl > header, #done-quizz > header{
     height: 69px;
     margin-bottom: 37px;
     background-color: #EC362D;
@@ -196,9 +196,8 @@ body{
 header >h1{
     color: #FFFFFF;
 }
-/*creation quizz styles*/
 
-#creation-quizz > h4{
+#creation-quizz > h4, #quizzlvl > h4, #done-quizz > h4{
     text-align: center;
     margin-bottom: 29px;
 }
@@ -270,9 +269,43 @@ header >h1{
     font-family: 'Roboto', sans-serif;
     font-style: italic;
 }
-/*creation quizz styles ending*/
+#background-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+#background{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 181px;
+    width: 340px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/backgroundimg-done.jpg");
+    background-size: cover;
 
+}
+#quizz-done-img{
+    width: calc(100% - 20px);
+}
+#btn-container{
+    display: flex;
+    flex-direction: column;
+}
+.btn{
+    width: 220px;
+    height: 44px;
+    margin: 4px 0px;
+
+    background: #EC362D;
+    border-radius: 15px;
+    color: #FFF5F4  
+}
+#cancel-quizzbtn{
+    background-color: transparent;
+    color: #818181;
+}
 /*Fim - Yves CSS*/
 
 /*Começo - Barci CSS*/
