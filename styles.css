@@ -117,7 +117,8 @@ header >h1{
     justify-content: center;
 }
 
-.screen-list-quizzes header{
+.screen-list-quizzes header,
+.info-quizz header{
     width: 100%;
     height: 69px;
     display: flex;
@@ -148,7 +149,7 @@ header >h1{
     width: 100%;
     height: 181px;
     margin: 77px 0px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     background: #FAFAFA;
@@ -182,6 +183,7 @@ header >h1{
 
 .area-my-quizzes{
     display: none;
+    flex-direction: column;
     width: 100%;
     margin-top: 65px;
     margin-bottom: 48px;
@@ -224,7 +226,7 @@ header >h1{
 
 .area-all-quizzes{
     width: 100%;
-    margin-bottom: 211px;
+    margin-bottom: 100px;
 }
 
 .area-all-quizzes>p{
@@ -276,6 +278,83 @@ header >h1{
 }
 
 
+.info-quizz{
+    display: none;
+    justify-content: center;
+}
+
+.info-quizz main{
+    width: 600px;
+    margin-top: 69px;
+}
+
+.info-quizz h2{
+    width: 207px;
+    height: 27px;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.form-info{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 71px;
+}
+
+.form-info form{
+    width: 100%;
+    height: 256px;
+    background-color: #FFFFFF;
+    margin-top: 27px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-info form>input{
+    width: calc(100% - 36px);
+    height: 46px;
+    background-color: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    margin-bottom: 9px;
+    margin-left: 16px;
+    font-size: 19px;
+    line-height: 22px;
+    padding-left: 23px;
+}
+
+.form-info form>input:nth-of-type(1){
+    margin-top: 21px;
+}
+
+.form-info form>input::placeholder{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: #BABABA;
+}
+
+.form-info button{
+    width: 340px;
+    height: 54px;
+    background-color: #EC362D;
+    border-radius: 15px;
+    margin-top: 85px;
+    font-weight: 400;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFF5F4;
+}
+
 /*Fim - Barci CSS*/
 
 .active{
@@ -316,6 +395,12 @@ header >h1{
     /*Fim - Barci CSS*/
 }
 
+@media (max-width: 600px) {
+    .info-quizz main{
+        width: 100%;
+    }
+}
+
 @media (max-width: 340px) {
     .screen-list-quizzes main{
         width: 100%;
@@ -324,6 +409,10 @@ header >h1{
     .card-quizz{
         width: 100%;
         margin-right: 0px;
+    }
+
+    .form-info button{
+        width: 100%;
     }
 }
 
