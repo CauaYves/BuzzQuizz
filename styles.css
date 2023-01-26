@@ -174,7 +174,11 @@ body{
 /*Fim - Fernando CSS*/
 /*Começo - Yves CSS*/
 
-#creation-quizz header{
+#creation-quizz, #quizzlvl{
+    display: none;
+}
+
+#creation-quizz > header, #quizzlvl > header{
     height: 69px;
     margin-bottom: 37px;
     background-color: #EC362D;
@@ -190,12 +194,12 @@ header >h1{
 }
 /*creation quizz styles*/
 
-#creation-quizz > h4{
+#creation-quizz > h4, #quizzlvl > h4{
     text-align: center;
     margin-bottom: 29px;
 }
 
-#creation-quizz form{
+#creation-quizz form, #quizzlvl > form{
     background-color: #FFFFFF;
     box-shadow: 1px 5px 7px rgba(0, 0, 0, 0.091);
     margin-bottom: 22px;
@@ -205,7 +209,7 @@ header >h1{
     align-items: center;
     flex-direction: column;
 }
-#creation-quizz form > input{
+#creation-quizz form > input, #quizzlvl > form > input{
     border: 1px solid #D1D1D1;
 
     margin-bottom: 9px;
@@ -252,7 +256,7 @@ header >h1{
     font-size: 19px;
 }
 
-#lvl-description{
+#lvl-description, #lvl-description2, #lvl-description3{
     border-radius: 5px;
     border: 1px solid #D1D1D1;
     width: calc(100% - 18px);
