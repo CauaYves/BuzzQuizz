@@ -16,6 +16,58 @@
 </head>
 
 <body>
+    <!--Começo - Fernando HTML-->
+    <!--quizz page screen-->
+    <div class="screen-quizz">
+        <header><h1>BuzzQuizz</h1></header>        
+            <section class="questions">
+            <div class="title-quizz"><h2>O quão Potterhead é você?</h2></div>
+                <!--question 1-->
+                <div class="question-box">
+                    <div class="question-title">Perguntinha aqui?</div>
+                    <div class="answers disabled">
+                        <div class="option"><img src="imagens/answers.png" alt=""><p>Gatíneo</p></div>
+                        <div class="option"><img src="imagens/answers.png" alt=""><p>Gatíneo 2</p></div>
+                        <div class="option"><img src="imagens/answers.png" alt=""><p>Gatíneo 3</p></div>
+                        <div class="option" id="correct" ><img src="imagens/answers.png" alt=""><p>Gatíneo 4</p></div>
+                    </div>
+                </div>
+                <!--question 2-->
+                <div class="question-box">
+                    <div class="question-title">Perguntinha aqui?</div>
+                    <div class="answers">
+                        <div class=""><img src="" alt=""><p>Gatíneo</p></div>
+                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 2</p></div>
+                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 3</p></div>
+                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 4</p></div>
+                    </div>
+                </div>
+                <!--question 3-->
+                <div class="question-box">
+                    <div class="question-title">Perguntinha aqui?</div>
+                    <div class="answers">
+                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo</p></div>
+                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 2</p></div>
+                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 3</p></div>
+                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 4</p></div>
+                    </div>
+                </div>
+                <!--quizz results-->
+                <div class="results-box">
+                    <div class="results-title">XX% de acerto: parabéns, você reprovou no buzzfeed de Harry Potter.</div>
+                    <div class="results-content">
+                        <img src="imagens/results.png" alt="">
+                        <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste. </p>
+                    </div>
+                </div>
+                <!--quizz restart/exit-->
+                <div class="quizz-end">
+                    <button class="button-quizz-restart">Reiniciar Quizz</button>
+                    <button class="button-quizz-exit">Voltar pra home</button>
+                </div>
+            </section>       
+    </div>
+    <!--Fim - Fernando HTML-->
 
     <!--Começo - HTML Barci-->
     <div class="screen-list-quizzes">
@@ -95,9 +147,7 @@
         </main>
     </div>
 
-
-
-    <div class="info-quizz active">
+    <div class="info-quizz">
         <header>
             <h1>BuzzQuizz</h1>
         </header>
@@ -116,9 +166,7 @@
     </div>
     <!--Fim - HTML Barci-->
 
-
     <!--Começo - HTML Yves-->
-    <!--creation quizz screen-->
     <section id="creation-quizz">
         <header>
             <h1>BuzzQuizz</h1>
@@ -219,6 +267,64 @@
         </form>
         <div id="btn-container">
             <button id="finish-btn">Finalizar quiz</button>
+        </div>
+    </section>
+
+    <section id="quizzlvl">
+        <header>
+            <h1>BuzzQuizz</h1>
+        </header>
+        <h4>Agora, decida os níveis</h4>
+        <form>
+            <!--first level form-->
+            <div class="title-form">
+                <h4>Nível 1</h4>
+                <ion-icon name="open-outline" id="open-icon"></ion-icon>
+            </div>
+            <input type="text" id="ilvl-title" placeholder="Titulo do nível">
+            <input type="text" id="ipercent-min" placeholder="Porcentagem de acerto mínima">
+            <input type="text" id="percent-url" placeholder="URL da imagem do nível">
+            <textarea id="lvl-description" cols="30" rows="10"></textarea>
+        </form>
+            <!--second level form-->
+            <form>
+                <div class="title-form">
+                    <h4>Nível 2</h4>
+                    <ion-icon name="open-outline" id="open-icon"></ion-icon>
+                </div>
+                <input type="text" id="ilvl-title2" placeholder="Titulo do nível">
+                <input type="text" id="ipercent-min2" placeholder="Porcentagem de acerto mínima">
+                <input type="text" id="percent-url2" placeholder="URL da imagem do nível">
+                <textarea id="lvl-description2" cols="30" rows="10"></textarea>
+            </form> <!--third level form-->
+        <form>
+            <div class="title-form">
+                <h4>Nível 3</h4>
+                <ion-icon name="open-outline" id="open-icon"></ion-icon>
+            </div>
+            <input type="text" id="ilvl-title3" placeholder="Titulo do nível">
+            <input type="text" id="ipercent-min3" placeholder="Porcentagem de acerto mínima">
+            <input type="text" id="percent-url3" placeholder="URL da imagem do nível">
+            <textarea id="lvl-description3" cols="30" rows="10"></textarea>
+        </form>
+
+    </section>
+
+    <section id="done-quizz">
+        <header>
+            <h1>BuzzQuizz</h1>
+        </header>
+        <h4>Seu quizz está pronto</h4>
+        <div id="background-container">
+            <div id="background"></div>
+        </div>
+        <div id="btn-container">
+            <button id="send-quizzbtn" class="btn">
+                Acessar Quizz
+            </button>
+            <button id="cancel-quizzbtn" class="btn">
+                Voltar para home
+            </button>
         </div>
     </section>
     <!--Fim - HTML Yves-->

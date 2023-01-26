@@ -12,9 +12,178 @@ body{
     background-color: #FAFAFA;
 }
 
-/*Começo - Yves CSS*/
+/*Começo - Fernando CSS*/
+.screen-quizz{
+    display:none;
+    flex-direction: column;
+    margin: 0 auto;
+    width:100%;    
+}
+.screen-quizz header h1{
+    position: fixed;
+    width:100%;
+    height:69px;
+    font-size: 37px;
+    line-height: 43px;
+    color: #FFFFFF;
+    background-color: #EC362D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    z-index:1;
+}
+.title-quizz h2{
+    width:100%;
+    height:227px;
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 46px;
+    color: #FFFFFF;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/background-title.png");
+    display:flex;
+    justify-content: center;
+    align-items: center;        
+}
+/**INÍCIO CONFIGS PERGUNTAS*/
+.questions{
+    width:100%;
+    margin-top:69px; /*Margem do tamanho do header*/
+}
+.question-box{
+    width:759px;
+    height:676px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);    
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 40px auto;
+    padding: 30px 35px;
+}
+.question-title{
+    width:688.16px;
+    height:137.99px;
+    background-color: #434CA0;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    text-align: center;    
+    color: #FFFFFF;
+}
+.answers{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px; /**Distância para as perguntas nunca colarem no título, independente do tamanho*/
+    gap:20px;
+}
+.answers .option{
+    max-width:329.91px;
+}
+.answers img{
+    width:329.91px;
+    height:175.2px;
+}
+.answers p{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    margin: 8px 0;
+}
 
-#creation-quizz header{
+.question-box div#correct{    
+    color:#009C22;
+    opacity:1;
+}
+.question-box .disabled div{
+    opacity:0.3;
+}
+.question-box .disabled{
+    color:#FF4B4B;
+}
+
+
+/**INÍCIO CONFIGS RESULTADO FINAL*/
+
+.results-box{
+    width: 759px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    margin: 0 auto 42px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+}
+.results-title{
+    width: 727px;
+    height: 99px;
+    background-color:#EC362D;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+.results-content{
+    display:flex;
+    margin-top: 18px;
+    gap: 20px;
+}
+.results-content img{
+    width:364px;
+    height:273;
+}
+.results-content p{
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 25px;
+    color: #484848;
+}
+/**INÍCIO BOTÕES FIM DE QUIZZ*/
+.quizz-end{
+    height: 150px;    
+    gap:15px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.button-quizz-restart{
+    background: #EC362D;
+    border-radius: 15px;
+    color: #FFF5F4    
+}
+.button-quizz-exit{    
+    background: transparent;
+    color:#818181
+}
+.button-quizz-exit,.button-quizz-restart{
+    width: 260.38px;
+    height: 52px;
+    font-weight: 400;
+    font-size: 21px;
+    text-align: center;
+}
+
+
+/*Fim - Fernando CSS*/
+
+/*Começo - Yves CSS*/
+#creation-quizz, #quizzlvl, #done-quizz{
+    display: none;
+}
+
+#creation-quizz > header, #quizzlvl > header, #done-quizz > header{
     height: 69px;
     margin-bottom: 37px;
     background-color: #EC362D;
@@ -28,17 +197,13 @@ body{
 header >h1{
     color: #FFFFFF;
 }
-/*creation quizz styles*/
-#creation-quizz{
-   display: none;
-     /*display: block; */
-}
-#creation-quizz > h4{
+
+#creation-quizz > h4, #quizzlvl > h4, #done-quizz > h4{
     text-align: center;
     margin-bottom: 29px;
 }
 
-#creation-quizz form{
+#creation-quizz form, #quizzlvl > form{
     background-color: #FFFFFF;
     box-shadow: 1px 5px 7px rgba(0, 0, 0, 0.091);
     margin-bottom: 22px;
@@ -48,7 +213,7 @@ header >h1{
     align-items: center;
     flex-direction: column;
 }
-#creation-quizz form > input{
+#creation-quizz form > input, #quizzlvl > form > input{
     border: 1px solid #D1D1D1;
 
     margin-bottom: 9px;
@@ -76,7 +241,7 @@ header >h1{
     height: 20px;
     width: 26px;
 }
-.btn-container{
+#btn-container{
     width: 100%;
     margin: 40px 0px;
 
@@ -84,7 +249,7 @@ header >h1{
     align-items: center;
     justify-content: center;
 }
-.btn{
+#finish-btn{
     background-color: #EC362D;
     color: #FFFFFF;
 
@@ -95,7 +260,7 @@ header >h1{
     font-size: 19px;
 }
 
-#lvl-description{
+#lvl-description, #lvl-description2, #lvl-description3{
     border-radius: 5px;
     border: 1px solid #D1D1D1;
     width: calc(100% - 18px);
@@ -105,9 +270,44 @@ header >h1{
     font-family: 'Roboto', sans-serif;
     font-style: italic;
 }
-/*creation quizz styles ending*/
+#background-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+#background{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 181px;
+    width: 340px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/backgroundimg-done.jpg");
+    background-size: cover;
+    border-radius: 5px;
 
+}
+#quizz-done-img{
+    width: calc(100% - 20px);
+}
+#btn-container{
+    display: flex;
+    flex-direction: column;
+}
+.btn{
+    width: 220px;
+    height: 44px;
+    margin: 4px 0px;
+
+    background: #EC362D;
+    border-radius: 15px;
+    color: #FFF5F4  
+}
+#cancel-quizzbtn{
+    background-color: transparent;
+    color: #818181;
+}
 /*Fim - Yves CSS*/
 
 /*Começo - Barci CSS*/
@@ -358,7 +558,7 @@ header >h1{
 /*Fim - Barci CSS*/
 
 .active{
-    display: flex;
+    display:flex;
 }
 
 @media (max-width: 1100px) {
@@ -393,6 +593,83 @@ header >h1{
     }
 
     /*Fim - Barci CSS*/
+
+    /*Começo - Fernando CSS*/
+    .title-quizz h2{
+        min-width:375px;
+        width:100%;
+        height:142px;
+        font-size: 19px;
+        line-height: 22.27px;     
+    }
+    .question-box{
+        width:375px;
+        height:436px;        
+        margin: 28px auto;
+        padding: 15px;
+        justify-content: center; /*A proporção é menor, então esse ajuste fica melhor aqui*/
+    }
+    .question-title{
+        width:340px;
+        height:89px;
+        font-weight: 700;
+        font-size: 19px;
+        line-height: 22.27px;        
+    }
+    .answers{
+        margin-top: 13px; /**Distância para as perguntas nunca colarem no título, independente do tamanho*/
+        gap:12px;
+    }
+    .answers .option{
+        max-width:163px;
+    }
+    .answers img{
+        width:163px;
+        height:113px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(imagens/Simpsons.jpg);
+        background-size:cover;
+    }   
+    .answers p{        
+        font-weight: 700;
+        font-size: 13px;
+        line-height:15.23px;
+        margin: 5px 0;
+    }
+    .results-box{
+        width: 375px;
+        padding: 18px;
+    }
+    .results-title{
+        width: 340px;
+        height: 99px;
+        font-weight: 700;
+        font-size: 19px;
+        line-height: 22.27px;
+    }
+    .results-content{
+        flex-direction: column;
+        margin-top: 18px;
+        gap: 20px;
+    }
+    .results-content img{
+        width:340px;
+        height:255px;
+    }
+    .results-content p{
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 19.92px;
+    }
+    .button-quizz-exit,.button-quizz-restart{
+        width: 220.32px;
+        height: 44px;
+        font-size: 18px;
+    }
+    .quizz-end{
+        gap: 8px;
+        min-width:375px;
+    }
+    /*Fim - Fernando CSS*/
 }
 
 @media (max-width: 600px) {
@@ -415,5 +692,6 @@ header >h1{
         width: 100%;
     }
 }
+
 
 
