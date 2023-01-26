@@ -13,10 +13,14 @@ body{
 }
 
 /*Começo - Fernando CSS*/
-.tela-quizz{
+.screen-quizz{
     display:none;
+    flex-direction: column;
+    margin: 0 auto;
+    width:100%;    
 }
-.tela-quizz header h1{
+.screen-quizz header h1{
+    position: fixed;
     width:100%;
     height:69px;
     font-size: 37px;
@@ -27,6 +31,7 @@ body{
     display:flex;
     justify-content: center;
     align-items: center;
+    z-index:1;
 }
 .title-quizz h2{
     width:100%;
@@ -35,11 +40,15 @@ body{
     font-size: 39px;
     line-height: 46px;
     color: #FFFFFF;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/background-title.png");        
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/background-title.png");
+    display:flex;
+    justify-content: center;
+    align-items: center;        
 }
 /**INÍCIO CONFIGS PERGUNTAS*/
 .questions{
     width:100%;
+    margin-top:69px; /*Margem do tamanho do header*/
 }
 .question-box{
     width:759px;
@@ -165,20 +174,12 @@ body{
     font-size: 21px;
     text-align: center;
 }
-.flex{
-    flex-direction: column;
-    margin: 0 auto;
-    width:100%;
-}
+
 
 /*Fim - Fernando CSS*/
 /*Começo - Yves CSS*/
 
-#creation-quizz, #quizzlvl{
-    display: none;
-}
-
-#creation-quizz > header, #quizzlvl > header{
+#creation-quizz header{
     height: 69px;
     margin-bottom: 37px;
     background-color: #EC362D;
@@ -194,7 +195,7 @@ header >h1{
 }
 /*creation quizz styles*/
 
-#creation-quizz > h4, #quizzlvl > h4{
+#creation-quizz > h4{
     text-align: center;
     margin-bottom: 29px;
 }
@@ -475,6 +476,83 @@ header >h1{
     }
 
     /*Fim - Barci CSS*/
+
+    /*Começo - Fernando CSS*/
+    .title-quizz h2{
+        min-width:375px;
+        width:100%;
+        height:142px;
+        font-size: 19px;
+        line-height: 22.27px;     
+    }
+    .question-box{
+        width:375px;
+        height:436px;        
+        margin: 28px auto;
+        padding: 15px;
+        justify-content: center; /*A proporção é menor, então esse ajuste fica melhor aqui*/
+    }
+    .question-title{
+        width:340px;
+        height:89px;
+        font-weight: 700;
+        font-size: 19px;
+        line-height: 22.27px;        
+    }
+    .answers{
+        margin-top: 13px; /**Distância para as perguntas nunca colarem no título, independente do tamanho*/
+        gap:12px;
+    }
+    .answers .option{
+        max-width:163px;
+    }
+    .answers img{
+        width:163px;
+        height:113px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(imagens/Simpsons.jpg);
+        background-size:cover;
+    }   
+    .answers p{        
+        font-weight: 700;
+        font-size: 13px;
+        line-height:15.23px;
+        margin: 5px 0;
+    }
+    .results-box{
+        width: 375px;
+        padding: 18px;
+    }
+    .results-title{
+        width: 340px;
+        height: 99px;
+        font-weight: 700;
+        font-size: 19px;
+        line-height: 22.27px;
+    }
+    .results-content{
+        flex-direction: column;
+        margin-top: 18px;
+        gap: 20px;
+    }
+    .results-content img{
+        width:340px;
+        height:255px;
+    }
+    .results-content p{
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 19.92px;
+    }
+    .button-quizz-exit,.button-quizz-restart{
+        width: 220.32px;
+        height: 44px;
+        font-size: 18px;
+    }
+    .quizz-end{
+        gap: 8px;
+        min-width:375px;
+    }
+    /*Fim - Fernando CSS*/
 }
 
 @media (max-width: 340px) {
