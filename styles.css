@@ -180,7 +180,6 @@ body{
 
 /*Começo - Yves CSS*/
 #creation-quizz, #quizzlvl, #done-quizz{
-    display: none;
 }
 
 #creation-quizz > header, #quizzlvl > header, #done-quizz > header{
