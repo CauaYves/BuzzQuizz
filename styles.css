@@ -220,8 +220,8 @@ header >h1{
     height: 46px;
     width: calc(100% - 16px);
 
-    color: #D1D1D1;
-
+    color: black;
+     
     text-align: left;
     font-style: italic;
     font-size: 19px;
@@ -259,7 +259,7 @@ header >h1{
     font-size: 19px;
 }
 
-#lvl-description, #lvl-description2, #lvl-description3{
+.text-box{
     border-radius: 5px;
     border: 1px solid #D1D1D1;
     width: calc(100% - 18px);
@@ -554,11 +554,10 @@ header >h1{
     color: #FFF5F4;
 }
 
-/*Fim - Barci CSS*/
-
 .active{
-    display:flex;
+    display:block;
 }
+/*Fim - Barci CSS*/
 
 @media (max-width: 1100px) {
 

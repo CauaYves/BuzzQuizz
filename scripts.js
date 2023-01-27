@@ -1,4 +1,61 @@
 // Começo - JS Yves
+
+let formCriacao = document.querySelector('.form-info').childNodes[3];
+
+function inputsCheio(classe){
+
+    for(let i = 0; i < formCriacao.length; i++){
+
+        if(formCriacao[i].trim() === ''){
+            //está vazio
+            return false
+        }else{
+            //todos os campos preenchidos
+            return true
+        }
+
+    }
+    
+}
+
+let quizzInfo = {
+
+        pergunta:{
+
+        textPerg: '',
+        fundoPerg: '',
+
+        respostaCorreta:{
+
+            resCorreta: '',
+            ulrImg: '',
+        },
+        respostasIncorretas:{
+
+            resIncorreta: '',
+            ulrImg: '',
+
+            resIncorreta2: '',
+            ulrImg2: '',
+
+            resIncorreta3: '',
+            ulrImg3: '',
+
+        }
+        
+    }
+
+}
+
+function finishQuizz(){
+    let form = document.querySelector('#creation-quizz').querySelectorAll('.question')
+    console.log(form)
+
+    //validação pegar o nodeChilds do form e inserir as verificações
+    //rodar um loop para verificar se todos os campos estão preenchidos, caso estejam, 
+}
+
+
 //Fim - JS Yves
 
 // Começo - JS Fernando
