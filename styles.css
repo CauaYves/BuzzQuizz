@@ -1,3 +1,6 @@
+#creation-quizz{
+    display:none
+}
 /*reset*/
 *{
     border: none;
@@ -40,19 +43,22 @@ body{
     font-size: 39px;
     line-height: 46px;
     color: #FFFFFF;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/background-title.png");
+    overflow: hidden;
+    text-align: center;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57));
+    background-size: cover;
     display:flex;
     justify-content: center;
-    align-items: center;        
+    align-items: center;
+    scroll-margin-top: 69px; /*Valor para compensar header no scrollIntoView*/        
 }
 /**INÍCIO CONFIGS PERGUNTAS*/
-.questions{
+.content-quizz{
     width:100%;
     margin-top:69px; /*Margem do tamanho do header*/
 }
 .question-box{
     width:759px;
-    height:676px;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);    
     display:flex;
@@ -60,10 +66,11 @@ body{
     justify-content: space-between;
     margin: 40px auto;
     padding: 30px 35px;
+    scroll-margin-top: 69px; /*Valor para compensar header no scrollIntoView*/
 }
 .question-title{
-    width:688.16px;
-    height:137.99px;
+    max-width:688.16px;
+    min-height:137.99px;
     background-color: #434CA0;
     font-weight: 700;
     font-size: 23px;
@@ -75,18 +82,23 @@ body{
     color: #FFFFFF;
 }
 .answers{
+    width: 688.16px; /*Mesmo do título, para não ultrapassar limite*/
     display:flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 20px; /**Distância para as perguntas nunca colarem no título, independente do tamanho*/
     gap:20px;
 }
-.answers .option{
-    max-width:329.91px;
+.answers div{
+    margin: 0 auto; /*Respostas centralizadas dentro do div. Compensa a falta do space-between*/
+    max-width:329.91px;    
 }
 .answers img{
     width:329.91px;
     height:175.2px;
+    background-image: url(imagens/BuzzFeed-Logo.jpeg);
+    background-size: cover;
+    background-position: center;
 }
 .answers p{
     font-style: normal;
@@ -102,6 +114,7 @@ body{
 }
 .question-box .disabled div{
     opacity:0.3;
+    pointer-events: none; /**DESABILITA OS CLICKS*/
 }
 .question-box .disabled{
     color:#FF4B4B;
@@ -111,19 +124,20 @@ body{
 /**INÍCIO CONFIGS RESULTADO FINAL*/
 
 .results-box{
+    display:none;
     width: 759px;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     margin: 0 auto 42px;
-    display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 18px;
+    scroll-margin-top: 69px; /*Valor para compensar header no scrollIntoView*/
 }
 .results-title{
     width: 727px;
-    height: 99px;
+    min-height: 99px;
     background-color:#EC362D;
     font-weight: 700;
     font-size: 23px;
@@ -135,13 +149,14 @@ body{
     color: #FFFFFF;
 }
 .results-content{
+    width:727px; /*Mesmo do título, para não ultrapassar limite*/
     display:flex;
     margin-top: 18px;
     gap: 20px;
 }
 .results-content img{
-    width:364px;
-    height:273;
+    max-width:364px;
+    object-fit:contain;
 }
 .results-content p{
     font-weight: 700;
@@ -151,9 +166,9 @@ body{
 }
 /**INÍCIO BOTÕES FIM DE QUIZZ*/
 .quizz-end{
+    display:none;
     height: 150px;    
     gap:15px;
-    display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -174,8 +189,17 @@ body{
     font-size: 21px;
     text-align: center;
 }
-
-
+/*Código para quebrar uma palavra sempre que ultrapassar o limite.*/
+.title-quizz h2,
+.results-title{   
+    word-break:break-all;
+}
+.question-title,
+.results-content p,
+.answers p{
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
 /*Fim - Fernando CSS*/
 /*Começo - Yves CSS*/
 #creation-quizz header{
@@ -484,31 +508,29 @@ header >h1{
         line-height: 22.27px;     
     }
     .question-box{
-        width:375px;
-        height:436px;        
+        width:375px;    
         margin: 28px auto;
-        padding: 15px;
+        padding: 18px;
         justify-content: center; /*A proporção é menor, então esse ajuste fica melhor aqui*/
     }
     .question-title{
         width:340px;
-        height:89px;
+        min-height:89px;
         font-weight: 700;
         font-size: 19px;
         line-height: 22.27px;        
     }
     .answers{
         margin-top: 13px; /**Distância para as perguntas nunca colarem no título, independente do tamanho*/
-        gap:12px;
+        width: 340px; /*Mesmo do título, para não ultrapassar limite*/
+        gap:13px;
     }
-    .answers .option{
+    .answers div{
         max-width:163px;
     }
     .answers img{
         width:163px;
         height:113px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(imagens/Simpsons.jpg);
-        background-size:cover;
     }   
     .answers p{        
         font-weight: 700;
@@ -522,19 +544,20 @@ header >h1{
     }
     .results-title{
         width: 340px;
-        height: 99px;
+        min-height: 99px;
         font-weight: 700;
         font-size: 19px;
         line-height: 22.27px;
     }
     .results-content{
         flex-direction: column;
+        width: 340px; /*Mesmo do título, para não ultrapassar limite*/
         margin-top: 18px;
         gap: 20px;
     }
     .results-content img{
-        width:340px;
-        height:255px;
+        max-width:340px;
+        height:auto;
     }
     .results-content p{
         font-weight: 700;
@@ -549,7 +572,7 @@ header >h1{
     .quizz-end{
         gap: 8px;
         min-width:375px;
-    }
+    }    
     /*Fim - Fernando CSS*/
 }
 
