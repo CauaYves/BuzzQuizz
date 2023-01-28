@@ -20,56 +20,36 @@
     <!--quizz page screen-->
     <div class="screen-quizz">
         <header><h1>BuzzQuizz</h1></header>        
-            <section class="questions">
-            <div class="title-quizz"><h2>O quão Potterhead é você?</h2></div>
-                <!--question 1-->
-                <div class="question-box">
-                    <div class="question-title">Perguntinha aqui?</div>
-                    <div class="answers disabled">
-                        <div class="option"><img src="imagens/answers.png" alt=""><p>Gatíneo</p></div>
-                        <div class="option"><img src="imagens/answers.png" alt=""><p>Gatíneo 2</p></div>
-                        <div class="option"><img src="imagens/answers.png" alt=""><p>Gatíneo 3</p></div>
-                        <div class="option" id="correct" ><img src="imagens/answers.png" alt=""><p>Gatíneo 4</p></div>
-                    </div>
+            <section class="content-quizz">
+            <div class="title-quizz"><h2></h2></div>                
+                <div class="questions">
+                <!--quizz questions content-->
                 </div>
-                <!--question 2-->
-                <div class="question-box">
-                    <div class="question-title">Perguntinha aqui?</div>
-                    <div class="answers">
-                        <div class=""><img src="" alt=""><p>Gatíneo</p></div>
-                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 2</p></div>
-                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 3</p></div>
-                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 4</p></div>
-                    </div>
-                </div>
-                <!--question 3-->
-                <div class="question-box">
-                    <div class="question-title">Perguntinha aqui?</div>
-                    <div class="answers">
-                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo</p></div>
-                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 2</p></div>
-                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 3</p></div>
-                        <div class=""><img src="imagens/answers.png" alt=""><p>Gatíneo 4</p></div>
-                    </div>
-                </div>
-                <!--quizz results-->
                 <div class="results-box">
-                    <div class="results-title">XX% de acerto: parabéns, você reprovou no buzzfeed de Harry Potter.</div>
-                    <div class="results-content">
-                        <img src="imagens/results.png" alt="">
-                        <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste. </p>
-                    </div>
+                <!--quizz results content-->                    
                 </div>
                 <!--quizz restart/exit-->
                 <div class="quizz-end">
-                    <button class="button-quizz-restart">Reiniciar Quizz</button>
-                    <button class="button-quizz-exit">Voltar pra home</button>
+                    <button class="button-quizz-restart" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
+                    <button class="button-quizz-exit" onclick="location.reload()">Voltar pra home</button>
                 </div>
             </section>       
     </div>
     <!--Fim - Fernando HTML-->
 
     <!--Começo - HTML Barci-->
+    <div class="screen-loading">
+        <header>
+            <h1>BuzzQuizz</h1>
+        </header>
+        <section>
+            <img src="imagens/Loading-spin.gif"/>
+            <p>Carregando</p>
+        </section>
+    </div>
+
+
+
     <div class="screen-list-quizzes">
         <header>
             <h1>BuzzQuizz</h1>
@@ -90,6 +70,10 @@
                 <div class="my-quizzes">
                     <div class="card-quizz">
                         <h2>Acerte os personagens corretos dos Simpsons e prove seu amor!</h2>
+                        <div class="options-quizzes">
+                            <img src="imagens/Edit.png"/>
+                            <img src="imagens/Trash.png"/>
+                        </div>
                     </div>
 
                     <div class="card-quizz">
@@ -122,7 +106,7 @@
         </main>
     </div>
 
-    <div class="info-quizz active">
+    <div class="info-quizz">
         <header>
             <h1>BuzzQuizz</h1>
         </header>
