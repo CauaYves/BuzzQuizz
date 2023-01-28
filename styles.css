@@ -201,8 +201,12 @@ body{
     hyphens: auto;
 }
 /*Fim - Fernando CSS*/
+
 /*Começo - Yves CSS*/
-#creation-quizz header{
+#creation-quizz, #quizzlvl, #done-quizz{
+}
+
+#creation-quizz > header, #quizzlvl > header, #done-quizz > header{
     height: 69px;
     margin-bottom: 37px;
     background-color: #EC362D;
@@ -216,13 +220,13 @@ body{
 header >h1{
     color: #FFFFFF;
 }
-/*creation quizz styles*/
-#creation-quizz > h4{
+
+#creation-quizz > h4, #quizzlvl > h4, #done-quizz > h4{
     text-align: center;
     margin-bottom: 29px;
 }
 
-#creation-quizz form{
+#creation-quizz form, #quizzlvl > form{
     background-color: #FFFFFF;
     box-shadow: 1px 5px 7px rgba(0, 0, 0, 0.091);
     margin-bottom: 22px;
@@ -232,7 +236,7 @@ header >h1{
     align-items: center;
     flex-direction: column;
 }
-#creation-quizz form > input{
+#creation-quizz form > input, #quizzlvl > form > input{
     border: 1px solid #D1D1D1;
 
     margin-bottom: 9px;
@@ -240,8 +244,8 @@ header >h1{
     height: 46px;
     width: calc(100% - 16px);
 
-    color: #D1D1D1;
-
+    color: black;
+     
     text-align: left;
     font-style: italic;
     font-size: 19px;
@@ -279,7 +283,7 @@ header >h1{
     font-size: 19px;
 }
 
-#lvl-description{
+.text-box{
     border-radius: 5px;
     border: 1px solid #D1D1D1;
     width: calc(100% - 18px);
@@ -289,9 +293,44 @@ header >h1{
     font-family: 'Roboto', sans-serif;
     font-style: italic;
 }
-/*creation quizz styles ending*/
+#background-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+#background{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 181px;
+    width: 340px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/backgroundimg-done.jpg");
+    background-size: cover;
+    border-radius: 5px;
 
+}
+#quizz-done-img{
+    width: calc(100% - 20px);
+}
+#btn-container{
+    display: flex;
+    flex-direction: column;
+}
+.btn{
+    width: 220px;
+    height: 44px;
+    margin: 4px 0px;
+
+    background: #EC362D;
+    border-radius: 15px;
+    color: #FFF5F4  
+}
+#cancel-quizzbtn{
+    background-color: transparent;
+    color: #818181;
+}
 /*Fim - Yves CSS*/
 
 /*Começo - Barci CSS*/
@@ -299,10 +338,12 @@ header >h1{
 .screen-list-quizzes{
     display: none;
     justify-content: center;
+    overflow-x: hidden;
 }
 
-.screen-list-quizzes header{
-    width: 100%;
+.screen-list-quizzes header,
+.info-quizz header{
+    width: 100vw;
     height: 69px;
     display: flex;
     justify-content: center;
@@ -314,7 +355,8 @@ header >h1{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.screen-list-quizzes header>h1{
+.screen-list-quizzes header>h1,
+.info-quizz header>h1{
     width: 176px;
     height: 43px;
     font-weight: 700;
@@ -332,7 +374,7 @@ header >h1{
     width: 100%;
     height: 181px;
     margin: 77px 0px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     background: #FAFAFA;
@@ -366,6 +408,7 @@ header >h1{
 
 .area-my-quizzes{
     display: none;
+    flex-direction: column;
     width: 100%;
     margin-top: 65px;
     margin-bottom: 48px;
@@ -408,12 +451,10 @@ header >h1{
 
 .area-all-quizzes{
     width: 100%;
-    margin-bottom: 211px;
+    margin-bottom: 100px;
 }
 
 .area-all-quizzes>p{
-    width: 158px;
-    height: 23px;
     margin-bottom: 12px;
     font-weight: 700;
     font-size: 20px;
@@ -434,8 +475,9 @@ header >h1{
 .card-quizz{
     width: 340px;
     height: 181px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(imagens/Simpsons.jpg);
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(imagens/BuzzFeed-Logo.jpeg);
     background-size: cover;
+    background-position: center;
     border-radius: 5px;
     display: flex;
     align-items: end;
@@ -459,19 +501,94 @@ header >h1{
     margin-left: 18px;
 }
 
+.info-quizz{
+    display: none;
+    justify-content: center;
+}
 
-/*Fim - Barci CSS*/
+.info-quizz main{
+    width: 600px;
+    margin-top: 69px;
+}
+
+.info-quizz h2{
+    width: 207px;
+    height: 27px;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.form-info{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 71px;
+}
+
+.form-info form{
+    width: 100%;
+    height: 256px;
+    background-color: #FFFFFF;
+    margin-top: 27px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-info form>input{
+    width: calc(100% - 36px);
+    height: 46px;
+    background-color: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    margin-bottom: 9px;
+    margin-left: 16px;
+    font-size: 19px;
+    line-height: 22px;
+    padding-left: 23px;
+}
+
+.form-info form>input:nth-of-type(1){
+    margin-top: 21px;
+}
+
+.form-info form>input::placeholder{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: #BABABA;
+}
+
+.form-info button{
+    width: 340px;
+    height: 54px;
+    background-color: #EC362D;
+    border-radius: 15px;
+    margin-top: 85px;
+    font-weight: 400;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFF5F4;
+}
 
 .active{
-    display:flex;
+    display:block;
 }
+/*Fim - Barci CSS*/
 
 @media (max-width: 1100px) {
 
     /*Começo - Barci CSS*/
 
     .screen-list-quizzes main{
-        max-width: 340px;
+        width: 340px;
     }
 
     .area-my-quizzes{
@@ -576,6 +693,12 @@ header >h1{
     /*Fim - Fernando CSS*/
 }
 
+@media (max-width: 600px) {
+    .info-quizz main{
+        width: 100%;
+    }
+}
+
 @media (max-width: 340px) {
     .screen-list-quizzes main{
         width: 100%;
@@ -584,6 +707,10 @@ header >h1{
     .card-quizz{
         width: 100%;
         margin-right: 0px;
+    }
+
+    .form-info button{
+        width: 100%;
     }
 }
 
