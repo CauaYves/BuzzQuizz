@@ -319,7 +319,8 @@ header >h1{
 }
 
 .screen-list-quizzes header,
-.info-quizz header{
+.info-quizz header,
+.screen-loading header{
     width: 100vw;
     height: 69px;
     display: flex;
@@ -329,11 +330,13 @@ header >h1{
     position: fixed;
     top: 0px;
     left: 0px;
+    z-index: 1;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .screen-list-quizzes header>h1,
-.info-quizz header>h1{
+.info-quizz header>h1,
+.screen-loading header>h1{
     width: 176px;
     height: 43px;
     font-weight: 700;
@@ -449,6 +452,35 @@ header >h1{
     flex-wrap: wrap;
 }
 
+.my-quizzes>div{
+    position: relative;
+}
+
+.options-quizzes{
+    width: 43px;
+    height: 87px;
+    position: absolute;
+    top: 9px;
+    right: 0px;
+    background-color: #EC362D;
+    border-radius: 10px 0px 0px 11px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.options-quizzes img:nth-of-type(1){
+    width: 18.11px;
+    height: 18px;
+}
+
+.options-quizzes img:nth-of-type(2){
+    width: 19px;
+    height: 21.92px;
+}
+
 .card-quizz{
     width: 340px;
     height: 181px;
@@ -553,6 +585,37 @@ header >h1{
     justify-content: center;
     text-align: center;
     color: #FFF5F4;
+}
+
+.screen-loading{
+    display: none;
+}
+
+.screen-loading section{
+    margin-top: 69px;
+    width: 100%;
+    height: calc(100vh - 69px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen-loading img{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 24px;
+}
+
+.screen-loading p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #EC362D;
 }
 
 /*Fim - Barci CSS*/
