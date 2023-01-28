@@ -142,108 +142,18 @@
     <!--Fim - HTML Barci-->
 
     <!--Começo - HTML Yves-->
-    <section id="creation-quizz" class="active">
+ <section id="creation-quizz">
         <header>
             <h1>BuzzQuizz</h1>
         </header>
         <h4>Comece pelo começo</h4>
-        <form class="question">
-            <!--first form-->
-            <div class="title-form">
-                <h4>Pergunta 1</h4>
-                <ion-icon name="open-outline" id="open-icon"></ion-icon>
-            </div>
-            <input type="text" placeholder="Texto da pergunta">
-            <input type="text" placeholder="Cor de fundo da pergunta">
-            <!--second form-->
-            <div class="title-form">
-                <h4>Resposta correta</h4>
-            </div>
-            <input type="text" placeholder="Resposta correta">
-            <input type="text" placeholder="URL da imagem">
-            <!--third form-->
-            <div class="title-form">
-                <h4>Respostas incorretas</h4>
-            </div>
-            <input type="text" placeholder="Resposta incorreta 1">
-            <input type="text" placeholder="URL da imagem 1">
-            <br>
-            <br>
-            <input type="text" placeholder="Resposta incorreta 2">
-            <input type="text" placeholder="URL da imagem 2">
-            <br>
-            <br>
-            <input type="text" placeholder="Resposta incorreta 3">
-            <input type="text" placeholder="URL da imagem 3">
-            <br>
-            <br>
-        </form>
-        <form class="question">
-            <!--first form-->
-            <div class="title-form">
-                <h4>pergunta 2</h4>
-                <ion-icon name="open-outline" id="open-icon"></ion-icon>
-            </div>
-            <input type="text" placeholder="Texto da pergunta">
-            <input type="text" placeholder="Cor de fundo da pergunta">
-            <!--second form-->
-            <div class="title-form">
-                <h4>Resposta correta</h4>
-            </div>
-            <input type="text" placeholder="Resposta correta">
-            <input type="text" placeholder="URL da imagem">
-            <!--third form-->
-            <div class="title-form">
-                <h4>Respostas incorretas</h4>
-            </div>
-            <input type="text"  placeholder="Resposta incorreta 1">
-            <input type="text"  placeholder="URL da imagem 1">
-            <br>
-            <br>
-            <input type="text"  placeholder="Resposta incorreta 2">
-            <input type="text"  placeholder="URL da imagem 2">
-            <br>
-            <br>
-            <input type="text"  placeholder="Resposta incorreta 3">
-            <input type="text"  placeholder="URL da imagem 3">
-            <br>
-            <br>
-        </form>
-        <form class="question">
-            <!--first form-->
-            <div class="title-form">
-                <h4>Pergunta 3</h4>
-                <ion-icon name="open-outline" id="open-icon"></ion-icon>
-            </div>
-            <input type="text" placeholder="Texto da pergunta">
-            <input type="text" placeholder="Cor de fundo da pergunta">
-            <!--second form-->
-            <div class="title-form">
-                <h4>Resposta correta</h4>
-            </div>
-            <input type="text" placeholder="Resposta correta">
-            <input type="text" placeholder="URL da imagem">
-            <!--third form-->
-            <div class="title-form">
-                <h4>Respostas incorretas</h4>
-            </div>
-            <input type="text" placeholder="Resposta incorreta 1">
-            <input type="text" placeholder="URL da imagem 1">
-            <br>
-            <br>
-            <input type="text" placeholder="Resposta incorreta 2">
-            <input type="text" placeholder="URL da imagem 2">
-            <br>
-            <br>
-            <input type="text" placeholder="Resposta incorreta 3">
-            <input type="text" placeholder="URL da imagem 3">
-            <br>
-            <br>
-        </form>
+        <div id="perguntas">
+
+        </div>
         <div id="btn-container">
             <button id="finish-btn" onclick="finishQuizz()">Finalizar quiz</button>
         </div>
-    </section>
+    </section> 
 
     <section id="quizzlvl">
         <header>
@@ -256,10 +166,10 @@
                 <h4>Nível 1</h4>
                 <ion-icon name="open-outline" id="open-icon"></ion-icon>
             </div>
-            <input type="text" placeholder="Titulo do nível">
+            <input type="text" placeholder="Titulo do nível" minlength="10">
             <input type="text" placeholder="Porcentagem de acerto mínima">
             <input type="text" placeholder="URL da imagem do nível">
-            <textarea class="text-box" cols="30" rows="10"></textarea>
+            <textarea class="text-box" cols="30" rows="10" minlength="30"></textarea>
         </form>
             <!--second level form-->
             <form>

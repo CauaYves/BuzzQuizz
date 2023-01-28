@@ -180,6 +180,7 @@ body{
 
 /*Começo - Yves CSS*/
 #creation-quizz, #quizzlvl, #done-quizz{
+    display: none;
 }
 
 #creation-quizz > header, #quizzlvl > header, #done-quizz > header{
@@ -555,7 +556,7 @@ header >h1{
 }
 
 .active{
-    display:block;
+    display:flex;
 }
 /*Fim - Barci CSS*/
 

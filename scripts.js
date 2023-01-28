@@ -1,16 +1,10 @@
 // Começo - JS Yves
-
-/*
-    código - davi
-Função responsável por mudar as telas ao apertar div/button
-Recebe como parâmetro o nome da classe da tela que deseja abrir
-*/
-
 //variáveis correspondidas a criação do quizz (tela 3.1)
 let titulo;
 let urlImagem;
 let perguntas;
 let niveis;
+
 
 function mudarTela(classe){
     
@@ -20,6 +14,7 @@ function mudarTela(classe){
     });
     document.querySelector(classe).classList.add("active");
 }
+
 
 function ehUrl(url){
 
@@ -47,11 +42,12 @@ function inputsCheio(){
             urlImagem = formCriacao[2];
             perguntas = formCriacao[3]
             niveis = formCriacao [4]
-            console.log(titulo)
-            console.log(urlImagem)
-            console.log(perguntas)
-            console.log(niveis)
-            mudarTela('#creation-quizz');            
+
+            // mudarTela('#creation-quizz');            
+            finishQuizz()
+        }else{
+            alert('campo inválido')
+            return
         }
 
     }
@@ -88,8 +84,44 @@ let quizzInfo = {
 }
 
 function finishQuizz(){
-    let form = document.querySelector('#creation-quizz').querySelectorAll('.question')
-    console.log(form)
+    let i = 1;
+    let quizzMain = document.querySelector('#perguntas');
+    while( i < perguntas + 1 ){
+
+    quizzMain.innerHTML +=  `
+    <form class="question">
+            <div class="title-form">
+                <h4>pergunta ${i}</h4>
+                <ion-icon name="open-outline" id="open-icon"></ion-icon>
+            </div>
+            <input type="text" placeholder="Texto da pergunta">
+            <input type="text" placeholder="Cor de fundo da pergunta">
+            <div class="title-form">
+                <h4>Resposta correta</h4>
+            </div>
+            <input type="text" placeholder="Resposta correta">
+            <input type="text" placeholder="URL da imagem">
+            <div class="title-form">
+                <h4>Respostas incorretas</h4>
+            </div>
+            <input type="text"  placeholder="Resposta incorreta 1">
+            <input type="text"  placeholder="URL da imagem 1">
+            <br>
+            <br>
+            <input type="text"  placeholder="Resposta incorreta 2">
+            <input type="text"  placeholder="URL da imagem 2">
+            <br>
+            <br>
+            <input type="text"  placeholder="Resposta incorreta 3">
+            <input type="text"  placeholder="URL da imagem 3">
+            <br>
+            <br>
+        </form>
+    `
+       i++
+    }
+    console.log(quizzMain.innerHTML);
+
 
     //validação pegar o nodeChilds do form e inserir as verificações
     //rodar um loop para verificar se todos os campos estão preenchidos, caso estejam, 
