@@ -1,17 +1,57 @@
 // Começo - JS Yves
 
+/*
+    código - davi
+Função responsável por mudar as telas ao apertar div/button
+Recebe como parâmetro o nome da classe da tela que deseja abrir
+*/
+
+//variáveis correspondidas a criação do quizz (tela 3.1)
+let titulo;
+let urlImagem;
+let perguntas;
+let niveis;
+
+function mudarTela(classe){
+    
+    const telaAtual = document.querySelectorAll('.active');
+    telaAtual.forEach((telaAtual) => {
+    telaAtual.classList.remove('active');
+    });
+    document.querySelector(classe).classList.add("active");
+}
+
+function ehUrl(url){
+
+    let https = 'https://'
+    let http = 'http://'
+
+    for(let i = 0; i < http.length; i++){
+        
+        if(url[i] === https[i] || url[i] === http[i]){
+            return true
+        }
+        return false
+
+    }
+}
+
 let formCriacao = document.querySelector('.form-info').childNodes[3];
 
-function inputsCheio(classe){
+function inputsCheio(){
+    for(let i = 0; i < formCriacao.length; i++){ //quando tiver funcionando, remover o laço for
 
-    for(let i = 0; i < formCriacao.length; i++){
+        if(formCriacao[i].value !== '' && ehUrl(formCriacao[1].value) && formCriacao[2].value >= 3 && formCriacao[3].value >= 2){
 
-        if(formCriacao[i].trim() === ''){
-            //está vazio
-            return false
-        }else{
-            //todos os campos preenchidos
-            return true
+            titulo = formCriacao[1];
+            urlImagem = formCriacao[2];
+            perguntas = formCriacao[3]
+            niveis = formCriacao [4]
+            console.log(titulo)
+            console.log(urlImagem)
+            console.log(perguntas)
+            console.log(niveis)
+            mudarTela('#creation-quizz');            
         }
 
     }
@@ -92,18 +132,6 @@ function criarQuiz(){
     novoQuiz.then(sucessoCriacaoQuiz);
     novoQuiz.catch(falhaCriacaoQuiz);
 }*/
-
-/*
-Função responsável por mudar as telas ao apertar div/button
-Recebe como parâmetro o nome da classe da tela que deseja abrir
-*/
-function mudarTela(classe){
-    const telaAtual = document.querySelectorAll('.active');
-    telaAtual.forEach((telaAtual) => {
-    telaAtual.classList.remove('active');
-    });
-    document.querySelector(classe).classList.add("active");
-}
 
 /*
 Caso o servidor retorne a lista de quizzes sem nenhum erro,
