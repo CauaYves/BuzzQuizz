@@ -84,7 +84,7 @@ Status do Projeto: Em desenvolvimento ⚠️
 
 ### Tela inicial
 
-Em breve..
+![image](https://user-images.githubusercontent.com/108950428/215355525-9d8be3de-2b03-4d88-9e13-4f8f1b54972f.png)
 
 ### Como rodar o projeto
 
