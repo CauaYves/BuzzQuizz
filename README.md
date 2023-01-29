@@ -1,6 +1,10 @@
 <h1 align='center'>Buzz Quizz</h1>  
 <h6 align='center'>Projeto feito em grupo incentivando o uso das tecnologias para navegação entre páginas web.</h6>   
 
+### Tela inicial
+
+![image](https://user-images.githubusercontent.com/108950428/215355525-9d8be3de-2b03-4d88-9e13-4f8f1b54972f.png)
+
 ## 🛠Tecnologias  
 
 <img align = "center" alt = "html5" src = "https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /><img align = "center" alt = "css3" src = "https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /><img align = "center" alt = "javascript" src = "https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />
@@ -71,8 +75,6 @@
     - [X]  Para futuramente você conseguir diferenciar um quizz criado pelo usuário de outros quizzes, você pode armazenar esses ids no momento da criação do quizz.
         
         
-        [Artigo: Como armazenar dados no computador do usuário? (LocalStorage)](https://www.notion.so/Artigo-Como-armazenar-dados-no-computador-do-usu-rio-LocalStorage-c5c124921bec4bd583d98f5f9da061dd)
-        
     - [X]  Na **Tela 1: Lista de quizzes**, você pode comparar o id dos quizzes vindo do servidor com esses ids armazenados na criação dos quizzes para verificar se um determinado quizz foi criado pelo usuário em questão.
 ### Status  
 
@@ -81,10 +83,6 @@ Status do Projeto: Em desenvolvimento ⚠️
 ### Deploy
 
 * https://cauayves.github.io/projeto6-buzzquizz/
-
-### Tela inicial
-
-![image](https://user-images.githubusercontent.com/108950428/215355525-9d8be3de-2b03-4d88-9e13-4f8f1b54972f.png)
 
 ### Como rodar o projeto
 
