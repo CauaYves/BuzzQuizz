@@ -20,12 +20,8 @@ function sucessoCriacaoQuiz(resposta){
     document.querySelector(".image-quizz h2").innerHTML = resposta.data.title;
     document.querySelector(".done-quizz button").setAttribute("onclick",`iniciarQuizz(${resposta.data.id});`);
 
-    const telaAtual = document.querySelectorAll('.active');
-    telaAtual.forEach((telaAtual) => {
-    telaAtual.classList.remove('active');
-    });
 
-    document.querySelector(".done-quizz").classList.add("active");
+    mudarTela(".done-quizz");
     window.scrollTo(0,0);
 }
 
