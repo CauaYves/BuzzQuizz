@@ -1,104 +1,164 @@
-// Começo - JS Yves
+//Começo - JS TELAS 3.1/3.2/3.3/3.4
 
-/*
-    código - davi
-Função responsável por mudar as telas ao apertar div/button
-Recebe como parâmetro o nome da classe da tela que deseja abrir
-*/
+let objQuizFinal = {};
+let qtdPerguntas;
+let qtdNiveis;
 
-//variáveis correspondidas a criação do quizz (tela 3.1)
-let titulo;
-let urlImagem;
-let perguntas;
-let niveis;
+function sucessoCriacaoQuiz(resposta){
+    let arrayQuizzesUsuario = [];
 
-function mudarTela(classe){
-    
+    if (localStorage.getItem('quizzesUsuario') === null){
+        arrayQuizzesUsuario.push(resposta.data);
+        localStorage.setItem('quizzesUsuario', JSON.stringify(arrayQuizzesUsuario));
+    }else{
+        arrayQuizzesUsuario = JSON.parse(localStorage.getItem('quizzesUsuario'));
+        arrayQuizzesUsuario.push(resposta.data);
+        localStorage.setItem('quizzesUsuario', JSON.stringify(arrayQuizzesUsuario));
+    }
+
+    document.querySelector(".image-quizz").style.backgroundImage = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${resposta.data.image}), url(imagens/BuzzFeed-Logo.jpeg)`;
+    document.querySelector(".image-quizz h2").innerHTML = resposta.data.title;
+    document.querySelector(".done-quizz button").setAttribute("onclick",`iniciarQuizz(${resposta.data.id});`);
+
     const telaAtual = document.querySelectorAll('.active');
     telaAtual.forEach((telaAtual) => {
     telaAtual.classList.remove('active');
     });
-    document.querySelector(classe).classList.add("active");
+
+    document.querySelector(".done-quizz").classList.add("active");
+    window.scrollTo(0,0);
 }
 
-function ehUrl(url){
-
-    let https = 'https://'
-    let http = 'http://'
-
-    for(let i = 0; i < http.length; i++){
-        
-        if(url[i] === https[i] || url[i] === http[i]){
-            return true
-        }
-        return false
-
-    }
+function falhaCriacaoQuiz(){
+    alert("Ocorreu um erro durante a criação desse quiz");
+    window.location.reload();
 }
 
-let formCriacao = document.querySelector('.form-info').childNodes[3];
+function finalizarQuiz(){
+    let arrayLevels = [];
+    let objLevelAtual = {};
 
-function inputsCheio(){
-    for(let i = 0; i < formCriacao.length; i++){ //quando tiver funcionando, remover o laço for
+    for (let i = 0; i < qtdNiveis; i++){
+        let questionAtual = document.querySelectorAll(`.area-level .level:nth-of-type(${i+1})>input`);
 
-        if(formCriacao[i].value !== '' && ehUrl(formCriacao[1].value) && formCriacao[2].value >= 3 && formCriacao[3].value >= 2){
+        console.log(questionAtual);
+        objLevelAtual.title = questionAtual[0].value;
+        objLevelAtual.minValue = parseFloat(questionAtual[1].value);
+        objLevelAtual.image = questionAtual[2].value;
+        objLevelAtual.text = document.querySelector(`.area-level .level:nth-of-type(${i+1})>textarea`).value;
 
-            titulo = formCriacao[1];
-            urlImagem = formCriacao[2];
-            perguntas = formCriacao[3]
-            niveis = formCriacao [4]
-            console.log(titulo)
-            console.log(urlImagem)
-            console.log(perguntas)
-            console.log(niveis)
-            mudarTela('#creation-quizz');            
+        arrayLevels.push(JSON.parse(JSON.stringify(objLevelAtual)));
+    }
+
+    objQuizFinal.levels = arrayLevels;
+
+    const novoQuiz = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", objQuizFinal);
+    document.querySelector(".screen-loading").classList.add("active");
+    novoQuiz.then(sucessoCriacaoQuiz);
+    novoQuiz.catch(falhaCriacaoQuiz);
+}
+
+function criarPerguntas(proxPagina){
+    let arrayQuestions = [];
+    let objQuestionAtual = {};
+    let objRespostasAtuais = {};
+    let respostasAtuais = [];
+
+    for (let i = 0; i < qtdPerguntas; i++){
+        let questionAtual = document.querySelectorAll(`.area-question .question:nth-of-type(${i+1})>input`);
+        objQuestionAtual.title = questionAtual[0].value;
+        objQuestionAtual.color = questionAtual[1].value;
+        respostasAtuais = [];
+        for (let j = 2; j <= 9; j = j+2){
+            if(questionAtual[j].value.trim() != "" && questionAtual[j+1].value.trim() != ""){
+                objRespostasAtuais.text = questionAtual[j].value;
+                objRespostasAtuais.image = questionAtual[j+1].value;
+                if (j == 2){
+                    objRespostasAtuais.isCorrectAnswer = true;
+                }else{
+                    objRespostasAtuais.isCorrectAnswer = false;
+                }
+                respostasAtuais.push(JSON.parse(JSON.stringify(objRespostasAtuais)));
+            }
         }
 
+        objQuestionAtual.answers = respostasAtuais;
+        arrayQuestions.push(JSON.parse(JSON.stringify(objQuestionAtual)));
     }
+
+    objQuizFinal.questions = arrayQuestions;
+
+    const telaAtual = document.querySelectorAll('.active');
+    telaAtual.forEach((telaAtual) => {
+    telaAtual.classList.remove('active');
+    });
+
+    document.querySelector(proxPagina).classList.add("active");
+    window.scrollTo(0,0);
+}
+
+function informacoesIniciaisQuiz(proxPagina){
+    const arrayInput = document.querySelectorAll(".info-quizz input");
+
+    //Precisa fazer as validações
+
+    objQuizFinal.title = arrayInput[0].value;
+    objQuizFinal.image = arrayInput[1].value;
+    qtdPerguntas = parseInt(arrayInput[2].value);
+    qtdNiveis = parseInt(arrayInput[3].value);
+
+    const areaQuestion = document.querySelector(".area-question");
+    const areaLevel = document.querySelector(".area-level");
+
+    for (let i = 0; i < qtdPerguntas; i++){
+        areaQuestion.innerHTML += `<form class="question">
+            <div class="title-form">
+                <p>Pergunta ${i+1}</p>
+                <ion-icon name="open-outline"></ion-icon>
+            </div>
+            <input type="text" placeholder="Texto da pergunta">
+            <input type="text" placeholder="Cor de fundo da pergunta">
+            <p>Resposta correta</p>
+            <input type="text" placeholder="Resposta correta">
+            <input type="text" placeholder="URL da imagem">
+            <p>Respostas incorretas</p>
+            <input type="text" placeholder="Resposta incorreta 1">
+            <input type="text" placeholder="URL da imagem 1">
+            <input type="text" placeholder="Resposta incorreta 2">
+            <input type="text" placeholder="URL da imagem 2">
+            <input type="text" placeholder="Resposta incorreta 3">
+            <input type="text" placeholder="URL da imagem 3">
+        </form>`
+    }
+
+    areaQuestion.innerHTML += `<button onclick="criarPerguntas(${"'.quizzlvl'"});">Prosseguir pra criar níveis</button>`;
     
-}
-
-let quizzInfo = {
-
-        pergunta:{
-
-        textPerg: '',
-        fundoPerg: '',
-
-        respostaCorreta:{
-
-            resCorreta: '',
-            ulrImg: '',
-        },
-        respostasIncorretas:{
-
-            resIncorreta: '',
-            ulrImg: '',
-
-            resIncorreta2: '',
-            ulrImg2: '',
-
-            resIncorreta3: '',
-            ulrImg3: '',
-
-        }
-        
+    for (let j = 0; j < qtdNiveis; j++){
+        areaLevel.innerHTML += `<form class="level">
+            <div class="title-form">
+                <p>Nível ${j+1}</p>
+                <ion-icon name="open-outline"></ion-icon>
+            </div>
+            <input type="text" placeholder="Titulo do nível">
+            <input type="text" placeholder="% de acerto mínima">
+            <input type="text" placeholder="URL da imagem do nível">
+            <textarea class="text-box" cols="30" rows="10" placeholder="Descrição do nível"></textarea>
+        </form>`
     }
 
+    areaLevel.innerHTML += `<button onclick="finalizarQuiz(${"'.done-quizz'"});">Finalizar Quizz</button>`;
+
+    const telaAtual = document.querySelectorAll('.active');
+    telaAtual.forEach((telaAtual) => {
+    telaAtual.classList.remove('active');
+    });
+
+    document.querySelector(proxPagina).classList.add("active");
 }
 
-function finishQuizz(){
-    let form = document.querySelector('#creation-quizz').querySelectorAll('.question')
-    console.log(form)
+//Fim - JS TELAS 3.1/3.2/3.3/3.4
 
-    //validação pegar o nodeChilds do form e inserir as verificações
-    //rodar um loop para verificar se todos os campos estão preenchidos, caso estejam, 
-}
-
-
-//Fim - JS Yves
-
-// Começo - JS Fernando
+// Começo - JS TELA 2
 
 let arrTelaQuizzDados = [];
 let acertosQuizz = 0;
@@ -237,11 +297,13 @@ Caso dê erro, TRATAR DA VOLTA À PÁGINA PRINCIPAL. Com acerto, segue para a mo
 function iniciarQuizz(id){    
     //Faz requisição para pegar dados do quizz
     const quizz = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`)
+    document.querySelector(".screen-loading").classList.add("active");
     quizz.then(quizzOk => {
         console.log(quizzOk);
         const desativar = document.querySelectorAll('.active');
         desativar.forEach(elemento => (elemento.classList.remove('active')));
         document.querySelector('.screen-quizz').classList.add('active');
+        window.scrollTo(0,0);
         montarQuizz(quizzOk.data);
     })
     .catch(err => {
@@ -250,41 +312,19 @@ function iniciarQuizz(id){
     });
 }
 
-//Fim - JS Fernando
+//Fim - JS TELA 2
 
 
+//Começo - JS TELA 1
 
-//Começo - JS Barci
-
-/*Funções teste que serão apagadas ao final do projeto
-
-const quizTeste = {title: "Título do quizz", image: "https://pop.proddigital.com.br/wp-content/uploads/sites/8/2022/10/f.jpg",questions: [{title: "Título da pergunta 1", color: "#123456", answers: [{ text: "Texto da resposta 1", image: "https://http.cat/411.jpg", isCorrectAnswer: true}, {text: "Texto da resposta 2", image: "https://http.cat/412.jpg", isCorrectAnswer: false}]},{title: "Título da pergunta 2", color: "#123456", answers: [{text: "Texto da resposta 1",image: "https://http.cat/411.jpg",isCorrectAnswer: true},{text: "Texto da resposta 2",image: "https://http.cat/412.jpg",isCorrectAnswer: false}]},{title: "Título da pergunta 3",color: "#123456",answers: [{text: "Texto da resposta 1",image: "https://http.cat/411.jpg",isCorrectAnswer: true},{text: "Texto da resposta 2",image: "https://http.cat/412.jpg",isCorrectAnswer: false}]}],levels: [{title: "Título do nível 1",image: "https://http.cat/411.jpg",text: "Descrição do nível 1",minValue: 0},{title: "Título do nível 2",image: "https://http.cat/412.jpg",text: "Descrição do nível 2",minValue: 50}]};
-
-function sucessoCriacaoQuiz(resposta){
-    let arrayQuizzesUsuario = [];
-
-    if (localStorage.getItem('quizzesUsuario') === null){
-        arrayQuizzesUsuario.push(resposta.data);
-        localStorage.setItem('quizzesUsuario', JSON.stringify(arrayQuizzesUsuario));
-    }else{
-        arrayQuizzesUsuario = JSON.parse(localStorage.getItem('quizzesUsuario'));
-        arrayQuizzesUsuario.push(resposta.data);
-        localStorage.setItem('quizzesUsuario', JSON.stringify(arrayQuizzesUsuario));
-    }
-
-    obterQuizzesServidor();
+function mudarTela(classe){
+    
+    const telaAtual = document.querySelectorAll('.active');
+    telaAtual.forEach((telaAtual) => {
+    telaAtual.classList.remove('active');
+    });
+    document.querySelector(classe).classList.add("active");
 }
-
-function falhaCriacaoQuiz(){
-    alert("Ocorreu um erro durante a criação desse quiz");
-    window.location.reload();
-}
-
-function criarQuiz(){
-    const novoQuiz = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizTeste);
-    novoQuiz.then(sucessoCriacaoQuiz);
-    novoQuiz.catch(falhaCriacaoQuiz);
-}*/
 
 function sucessoExclusaoQuiz(){
     window.location.reload();
@@ -295,7 +335,7 @@ function erroExclusaoQuiz(){
     window.location.reload();
 }
 
-function excluirQuizz(id){
+function excluirQuizz(id, event){
     let objsQuizzes;
     
     if (localStorage.getItem('quizzesUsuario') !== null){
@@ -314,6 +354,7 @@ function excluirQuizz(id){
         }
     }
 
+    event.stopPropagation();
 }
 
 /*
@@ -352,7 +393,7 @@ function sucessoRequisicaoQuizzes(resposta){
         document.querySelector(".area-creation-quizz").classList.add("active");
     }else{
         for (j = 0; j < quizzesUsuario.length; j++){
-            areaUsuarioQuizzes.innerHTML += `<div class="card-quizz"> <h2>${quizzesUsuario[j].title}</h2> <div class="options-quizzes"> <img src="imagens/Edit.png"/> <img onclick="excluirQuizz(${quizzesUsuario[j].id})" src="imagens/Trash.png"/></div></div>`;
+            areaUsuarioQuizzes.innerHTML += `<div class="card-quizz" onclick="iniciarQuizz(${quizzesUsuario[j].id});"> <h2>${quizzesUsuario[j].title}</h2> <div class="options-quizzes"> <div><img src="imagens/Edit.png"/></div> <div onclick="excluirQuizz(${quizzesUsuario[j].id}, event)"><img src="imagens/Trash.png"/></div></div></div>`;
             document.querySelector(".my-quizzes .card-quizz:nth-last-child(1)").style.backgroundImage = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizzesUsuario[j].image}), url(imagens/BuzzFeed-Logo.jpeg)`;
         }
         document.querySelector(".screen-list-quizzes").classList.add("active");
@@ -360,7 +401,7 @@ function sucessoRequisicaoQuizzes(resposta){
     }
 
     for (let k = 0; k < quizzes.length; k++){
-        areaQuizzes.innerHTML += `<div class="card-quizz"> <h2>${quizzes[k].title}</h2> </div>`;
+        areaQuizzes.innerHTML += `<div class="card-quizz" onclick="iniciarQuizz(${quizzes[k].id});"> <h2>${quizzes[k].title}</h2> </div>`;
         document.querySelector(".area-all-quizzes .card-quizz:nth-last-child(1)").style.backgroundImage = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizzes[k].image}), url(imagens/BuzzFeed-Logo.jpeg)`;
     }
 }
@@ -388,5 +429,5 @@ function obterQuizzesServidor(){
     quizzes.catch(falhaRequisicaoQuizzes);
 }
 
-//obterQuizzesServidor();
-//Fim - JS Barci
+obterQuizzesServidor();
+//Fim - JS TELA 1
