@@ -537,7 +537,11 @@ function reiniciarQuizz(){
     montarQuizz(arrTelaQuizzDados);
     document.querySelector('.results-box').classList.remove('active');
     document.querySelector('.quizz-end').classList.remove('active');
-    document.querySelector('.title-quizz h2').scrollIntoView({behavior: "smooth"});
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });    
 }
 /*
 Função que só ocorre depois que todos question-box estão disabled, após responderQuizz(). (Ou seja, todas
@@ -672,7 +676,8 @@ function iniciarQuizz(id){
     })
     .catch(err => {
         console.log(err);
-        alert('Deu erro! Bota função de voltar pra página inicial');
+        alert('Deu erro! Por favor, escolha seu Quizz novamente');        
+        window.location.reload();
     });
 }
 
