@@ -19,22 +19,21 @@ body{
     margin: 0 auto;
     width:100%;    
 }
-
-.title-quizz h2{
+.title-quizz{
     width:100%;
-    height:227px;
-    font-weight: 400;
-    font-size: 39px;
-    line-height: 46px;
+    height:227px;      
     color: #FFFFFF;
     overflow: hidden;
     text-align: center;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57));
-    background-size: cover;  
     display:flex;
     justify-content: center;
-    align-items: center;
-    scroll-margin-top: 69px; /*Valor para compensar header no scrollIntoView*/        
+    align-items: center;       
+}
+.title-quizz h2{
+    max-width:100%;
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 46px;  
 }
 /**INÍCIO CONFIGS PERGUNTAS*/
 .content-quizz{
@@ -55,15 +54,18 @@ body{
 .question-title{
     max-width:688.16px;
     min-height:137.99px;
-    background-color: #434CA0;
-    font-weight: 700;
-    font-size: 23px;
-    line-height: 27px;
+    background-color: #434CA0;    
     display: flex;    
     justify-content: center;
     align-items: center;
     text-align: center;    
     color: #FFFFFF;
+}
+.question-title h3{ 
+    max-width:100%;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
 }
 .answers{
     width: 688.16px; /*Mesmo do título, para não ultrapassar limite*/
@@ -123,15 +125,18 @@ body{
 .results-title{
     width: 727px;
     min-height: 99px;
-    background-color:#EC362D;
-    font-weight: 700;
-    font-size: 23px;
-    line-height: 27px;
+    background-color:#EC362D;    
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #FFFFFF;
+}
+.results-title h3{
+    max-width:727px;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
 }
 .results-content{
     width:727px; /*Mesmo do título, para não ultrapassar limite*/
@@ -144,6 +149,7 @@ body{
     object-fit:contain;
 }
 .results-content p{
+    max-width:343px;
     font-weight: 700;
     font-size: 19px;
     line-height: 25px;
@@ -176,13 +182,12 @@ body{
 }
 /*Código para quebrar uma palavra sempre que ultrapassar o limite.*/
 .title-quizz h2,
-.results-title{   
-    word-break:break-all;
-}
-.question-title,
+.results-title,
+.question-title h3,
 .results-content p,
 .answers p{
     overflow-wrap: break-word;
+    word-wrap: break-word;
     hyphens: auto;
 }
 /*Fim - CSS TELA 2*/
@@ -763,10 +768,13 @@ header>h1{
         margin-bottom: 35px;
     }
 
-    .title-quizz h2{
+    .title-quizz{
         min-width:375px;
         width:100%;
         height:142px;
+    }
+    .title-quizz h2{        
+        width:100%;        
         font-size: 19px;
         line-height: 22.27px;     
     }
@@ -778,10 +786,12 @@ header>h1{
     }
     .question-title{
         width:340px;
-        min-height:89px;
+        min-height:89px;                
+    }
+    .question-title h3{
         font-weight: 700;
         font-size: 19px;
-        line-height: 22.27px;        
+        line-height: 22.27px;
     }
     .answers{
         margin-top: 13px; /**Distância para as perguntas nunca colarem no título, independente do tamanho*/
@@ -807,7 +817,9 @@ header>h1{
     }
     .results-title{
         width: 340px;
-        min-height: 99px;
+        min-height: 99px;        
+    }
+    .results-title h3{
         font-weight: 700;
         font-size: 19px;
         line-height: 22.27px;

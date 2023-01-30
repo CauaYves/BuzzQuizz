@@ -559,7 +559,7 @@ function mostrarResultados(){
         return elemento.minValue <= porcentagemAcertos;              //RETORNA PRIMEIRO MENOR ELEMENTO ENCONTRADO
     });    
     const telaResultado = document.querySelector('.results-box');
-    telaResultado.innerHTML = `<div class="results-title">${porcentagemAcertos}% de acerto: ${resultado.title}</div>
+    telaResultado.innerHTML = `<div class="results-title"><h3>${porcentagemAcertos}% de acerto: ${resultado.title}</h3></div>
                                 <div class="results-content">
                                     <img src="${resultado.image}" alt="">
                                     <p>${resultado.text}</p>
@@ -626,7 +626,7 @@ function montaCaixaPergunta(blocoPerguntas, pergunta){
         element += `<div iscorrectanswer="${resposta.isCorrectAnswer}" onclick="responderQuizz(this)"><img src="${resposta.image}" alt=""><p>${resposta.text}</p></div>`;
     });
     blocoPerguntas.innerHTML += `<div class="question-box">
-                                    <div class="question-title" style="background-color:${pergunta.color}">${pergunta.title}</div>
+                                    <div class="question-title" style="background-color:${pergunta.color}"><h3>${pergunta.title}</h3></div>
                                     <div class="answers">
                                     ${element}                                       
                                     </div>
@@ -641,9 +641,9 @@ COMO MONTAR O RESULTADO ainda deve ser definido.
 function montarQuizz(quizzData){
     arrTelaQuizzDados = [];
     acertosQuizz = 0;
-    const tituloQuizz = document.querySelector('.title-quizz h2');
-    tituloQuizz.innerHTML = quizzData.title;    
-    tituloQuizz.style.background = `center linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url('${quizzData.image}')`;
+    const tituloQuizz = document.querySelector('.title-quizz');
+    tituloQuizz.innerHTML = `<h2>${quizzData.title}</h2>`;    
+    tituloQuizz.style.background = `linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url('${quizzData.image}')`;
     tituloQuizz.style.backgroundSize="cover";
     tituloQuizz.style.backgroundPosition="center";
     //Monta as perguntas
