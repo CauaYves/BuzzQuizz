@@ -123,15 +123,11 @@ Monta a tela de resultados. Exibe a tela de resultados e os botões de reiniciar
 function mostrarResultados(){
     const porcentagemAcertos = Math.round(acertosQuizz/arrTelaQuizzDados.questions.length*100);
     //Verificar qual colocação o usuário tirou
-    const level = arrTelaQuizzDados.levels;
-    let colocacaoIndex = level.findIndex(function(level){
-        if(level.minValue>porcentagemAcertos){
-            return true;
-        }
-    });
-    //Se certifica se, se não houver valores maiores, está na última colocação
-    if (colocacaoIndex == -1) colocacaoIndex=level.length;
-    const resultado = level[colocacaoIndex-1];
+    let level = arrTelaQuizzDados.levels;
+    level = level.sort(function(a, b){return b.minValue-a.minValue}) //ORGANIZA MINVALUES EM ORDEM DESCENDENTE    
+    const resultado = level.find((elemento)=>{
+        return elemento.minValue <= porcentagemAcertos;              //RETORNA PRIMEIRO MENOR ELEMENTO ENCONTRADO
+    });    
     const telaResultado = document.querySelector('.results-box');
     telaResultado.innerHTML = `<div class="results-title">${porcentagemAcertos}% de acerto: ${resultado.title}</div>
                                 <div class="results-content">
@@ -217,7 +213,9 @@ function montarQuizz(quizzData){
     acertosQuizz = 0;
     const tituloQuizz = document.querySelector('.title-quizz h2');
     tituloQuizz.innerHTML = quizzData.title;    
-    tituloQuizz.style.background = `linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("${quizzData.image}")`;
+    tituloQuizz.style.background = `center linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url('${quizzData.image}')`;
+    tituloQuizz.style.backgroundSize="cover";
+    tituloQuizz.style.backgroundPosition="center";
     //Monta as perguntas
     const blocoPerguntas = document.querySelector('.questions');
     blocoPerguntas.innerHTML = "";
