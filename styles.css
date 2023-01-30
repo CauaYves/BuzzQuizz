@@ -12,27 +12,14 @@ body{
     background-color: #FAFAFA;
 }
 
-/*Começo - Fernando CSS*/
+/*Começo - CSS TELA 2*/
 .screen-quizz{
     display:none;
     flex-direction: column;
     margin: 0 auto;
     width:100%;    
 }
-.screen-quizz header h1{
-    position: fixed;
-    width:100%;
-    height:69px;
-    font-size: 37px;
-    line-height: 43px;
-    color: #FFFFFF;
-    background-color: #EC362D;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    z-index:1;
-}
+
 .title-quizz h2{
     width:100%;
     height:227px;
@@ -198,149 +185,201 @@ body{
     overflow-wrap: break-word;
     hyphens: auto;
 }
-/*Fim - Fernando CSS*/
+/*Fim - CSS TELA 2*/
 
-/*Começo - Yves CSS*/
-#creation-quizz, #quizzlvl, #done-quizz{
-}
 
-#creation-quizz > header, #quizzlvl > header, #done-quizz > header{
-    height: 69px;
-    margin-bottom: 37px;
-    background-color: #EC362D;
+/*Começo - CSS TELAS 3.1-3.2-3.3-3.4*/
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    box-shadow: 1px 5px 8px rgba(0, 0, 0, 0.212);
-}
-header >h1{
-    color: #FFFFFF;
-}
-
-#creation-quizz > h4, #quizzlvl > h4, #done-quizz > h4{
-    text-align: center;
-    margin-bottom: 29px;
-}
-
-#creation-quizz form, #quizzlvl > form{
-    background-color: #FFFFFF;
-    box-shadow: 1px 5px 7px rgba(0, 0, 0, 0.091);
-    margin-bottom: 22px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-#creation-quizz form > input, #quizzlvl > form > input{
-    border: 1px solid #D1D1D1;
-
-    margin-bottom: 9px;
-    padding-left: 7px;
-    height: 46px;
-    width: calc(100% - 16px);
-
-    color: black;
-     
-    text-align: left;
-    font-style: italic;
-    font-size: 19px;
-
-    border-radius: 5px;
-}
-.title-form{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    width: calc(100% - 20px);
-    height: 74px;
-}
-#open-icon{
-    height: 20px;
-    width: 26px;
-}
-#btn-container{
-    width: 100%;
-    margin: 40px 0px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#finish-btn{
-    background-color: #EC362D;
-    color: #FFFFFF;
-
-    height: 54px;
-    width: 354px;
-    border-radius: 15px;
-
-    font-size: 19px;
-}
-
-.text-box{
-    border-radius: 5px;
-    border: 1px solid #D1D1D1;
-    width: calc(100% - 18px);
-    margin-bottom: 30px;
-
-    font-size: large;
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-}
-#background-container{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#background{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 181px;
-    width: 340px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("./imagens/backgroundimg-done.jpg");
-    background-size: cover;
-    border-radius: 5px;
-
-}
-#quizz-done-img{
-    width: calc(100% - 20px);
-}
-#btn-container{
-    display: flex;
-    flex-direction: column;
-}
-.btn{
-    width: 220px;
-    height: 44px;
-    margin: 4px 0px;
-
-    background: #EC362D;
-    border-radius: 15px;
-    color: #FFF5F4  
-}
-#cancel-quizzbtn{
-    background-color: transparent;
-    color: #818181;
-}
-/*Fim - Yves CSS*/
-
-/*Começo - Barci CSS*/
-
-.screen-list-quizzes{
+.creation-quizz, 
+.quizzlvl,
+.done-quizz{
     display: none;
     justify-content: center;
-    overflow-x: hidden;
 }
 
-.screen-list-quizzes header,
-.info-quizz header{
+.area-question,
+.area-level,
+.area-done{
+    width: 600px;
+    margin-top: 69px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.area-question>p,
+.area-level>p,
+.area-done>p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin-top: 63px;
+}
+
+.question,
+.level{
+    width: 600px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 35px;
+}
+
+.title-form{
+    margin-top: 27px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.question>div p:nth-of-type(1),
+.question>p:nth-of-type(4),
+.question>p:nth-of-type(7),
+.level>div p:nth-of-type(1){
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin-left: 17px;
+}
+
+.question ion-icon,
+.level ion-icon{
+    width: 26px;
+    height: 22px;
+    margin-right: 24px;
+}
+
+.question input,
+.level input{
+    width: calc(100% - 36px);
+    height: 46px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    margin-left: 16px;
+    margin-top: 14px;
+    padding-left: 23px;
+    font-size: 19px;
+}
+
+.question input::placeholder,
+.level input::placeholder{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: #BABABA;
+}
+
+.level textarea{
+    width: calc(100% - 36px);
+    height: 177px;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    margin-top: 14px;
+    margin-bottom: 24px;
+    margin-left: 16px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 19px;
+    padding-top: 13px;
+    padding-left: 23px;
+}
+
+.level textarea::placeholder{
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: #BABABA;
+}
+
+.question>p{
+    margin-top: 27px;
+}
+
+.question input:nth-of-type(7),
+.question input:nth-of-type(9){
+    margin-top: 32px;
+}
+
+.question input:nth-last-child(2){
+    margin-bottom: 27px;
+}
+
+.area-question .question:nth-last-of-type(1),
+.area-level .level:nth-last-of-type(1){
+    margin-bottom: 70px;
+}
+
+.area-question button,
+.area-level button{
+    width: 340px;
+    height: 54px;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFF5F4;
+    background-color: #EC362D;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.area-done button{
+    width: 220px;
+    height: 44px;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFF5F4;
+    background-color: #EC362D;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 9px;
+}
+
+.area-done button:nth-of-type(2){
+    color: #818181;
+    background-color: rgba(1, 1, 1, 0);
+    border: none;
+    margin-bottom: 50px;
+}
+
+.image-quizz{
+    width: 100%;
+    height: 266px;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(imagens/BuzzFeed-Logo.jpeg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    display: flex;
+    align-items: end;
+    margin: 46px 0px;
+}
+
+/*Fim - CSS TELAS 3.1-3.2-3.3-3.4*/
+
+/*Começo - CSS TELA 1*/
+header{
     width: 100vw;
     height: 69px;
     display: flex;
@@ -350,17 +389,23 @@ header >h1{
     position: fixed;
     top: 0px;
     left: 0px;
+    z-index: 1;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.screen-list-quizzes header>h1,
-.info-quizz header>h1{
+header>h1{
     width: 176px;
     height: 43px;
     font-weight: 700;
     font-size: 37px;
     line-height: 43px;
     color: #FFFFFF;
+}
+
+.screen-list-quizzes{
+    display: none;
+    justify-content: center;
+    overflow-x: hidden;
 }
 
 .screen-list-quizzes main{
@@ -470,6 +515,43 @@ header >h1{
     flex-wrap: wrap;
 }
 
+.my-quizzes>div{
+    position: relative;
+}
+
+.options-quizzes{
+    width: 43px;
+    height: 87px;
+    position: absolute;
+    top: 9px;
+    right: 0px;
+    background-color: #EC362D;
+    border-radius: 10px 0px 0px 11px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.options-quizzes>div{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.options-quizzes div:nth-of-type(1)>img{
+    width: 18.11px;
+    height: 18px;
+}
+
+.options-quizzes div:nth-of-type(2)>img{
+    width: 19px;
+    height: 21.92px;
+}
+
 .card-quizz{
     width: 340px;
     height: 181px;
@@ -487,9 +569,9 @@ header >h1{
     margin-right: 0px
 }
 
-.card-quizz h2{
+.card-quizz h2,
+.image-quizz h2{
     width: 301px;
-    height: 54px;
     font-weight: 400;
     font-size: 19px;
     line-height: 22px;
@@ -497,6 +579,8 @@ header >h1{
     align-items: center;
     color: #FFFFFF;
     margin-left: 18px;
+    margin-bottom: 7px;
+    word-break: break-all;
 }
 
 .info-quizz{
@@ -530,7 +614,6 @@ header >h1{
 
 .form-info form{
     width: 100%;
-    height: 256px;
     background-color: #FFFFFF;
     margin-top: 27px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
@@ -553,12 +636,51 @@ header >h1{
     margin-top: 21px;
 }
 
+.form-info form>input:nth-last-of-type(1){
+    margin-bottom: 21px;
+}
+
 .form-info form>input::placeholder{
     font-style: italic;
     font-weight: 400;
     font-size: 19px;
     line-height: 22px;
     color: #BABABA;
+}
+
+.text-validation{
+    display: none;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: -7px;
+    color: #EC362D;
+}
+
+.validation-failed{
+    display: block;
+}
+
+.question>.text-validation,
+.level>.text-validation{
+    margin-top: 0px
+}
+
+.level>p:nth-of-type(4){
+    margin-top: -24px;
+    margin-bottom: 24px;
+}
+
+.question>p:nth-of-type(13){
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+.form-info form>p:nth-last-of-type(1){
+    margin-top: -20px;
+    margin-bottom: 20px;
 }
 
 .form-info button{
@@ -576,14 +698,43 @@ header >h1{
     color: #FFF5F4;
 }
 
+.screen-loading{
+    display: none;
+}
+
+.screen-loading section{
+    margin-top: 69px;
+    width: 100%;
+    height: calc(100vh - 69px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen-loading img{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 24px;
+}
+
+.screen-loading p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #EC362D;
+}
+
 .active{
     display:flex;
 }
-/*Fim - Barci CSS*/
+/*Fim - CSS TELA 1*/
 
 @media (max-width: 1100px) {
-
-    /*Começo - Barci CSS*/
 
     .screen-list-quizzes main{
         width: 340px;
@@ -612,9 +763,6 @@ header >h1{
         margin-bottom: 35px;
     }
 
-    /*Fim - Barci CSS*/
-
-    /*Começo - Fernando CSS*/
     .title-quizz h2{
         min-width:375px;
         width:100%;
@@ -688,11 +836,15 @@ header >h1{
         gap: 8px;
         min-width:375px;
     }    
-    /*Fim - Fernando CSS*/
 }
 
 @media (max-width: 600px) {
-    .info-quizz main{
+    .info-quizz main,
+    .area-question,
+    .question,
+    .area-level,
+    .level,
+    .area-done{
         width: 100%;
     }
 }
@@ -707,7 +859,9 @@ header >h1{
         margin-right: 0px;
     }
 
-    .form-info button{
+    .form-info button,
+    .area-question button,
+    .area-level button{
         width: 100%;
     }
 }
