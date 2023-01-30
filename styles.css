@@ -19,20 +19,7 @@ body{
     margin: 0 auto;
     width:100%;    
 }
-.screen-quizz header h1{
-    position: fixed;
-    width:100%;
-    height:69px;
-    font-size: 37px;
-    line-height: 43px;
-    color: #FFFFFF;
-    background-color: #EC362D;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    z-index:1;
-}
+
 .title-quizz h2{
     width:100%;
     height:227px;
@@ -209,33 +196,6 @@ body{
     justify-content: center;
 }
 
-.creation-quizz header,
-.quizzlvl header,
-.done-quizz header{
-    width: 100vw;
-    height: 69px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #EC362D;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: 1;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.creation-quizz header>h1,
-.quizzlvl header>h1,
-.done-quizz header>h1{
-    width: 176px;
-    height: 43px;
-    font-weight: 700;
-    font-size: 37px;
-    line-height: 43px;
-    color: #FFFFFF;
-}
-
 .area-question,
 .area-level,
 .area-done{
@@ -275,8 +235,10 @@ body{
     justify-content: space-between;
 }
 
-.question p,
-.level p{
+.question>div p:nth-of-type(1),
+.question>p:nth-of-type(4),
+.question>p:nth-of-type(7),
+.level>div p:nth-of-type(1){
     font-weight: 700;
     font-size: 20px;
     line-height: 23px;
@@ -348,7 +310,7 @@ body{
     margin-top: 32px;
 }
 
-.question input:nth-last-child(1){
+.question input:nth-last-child(2){
     margin-bottom: 27px;
 }
 
@@ -415,19 +377,8 @@ body{
 
 /*Fim - CSS TELAS 3.1-3.2-3.3-3.4*/
 
-
-
 /*Começo - CSS TELA 1*/
-
-.screen-list-quizzes{
-    display: none;
-    justify-content: center;
-    overflow-x: hidden;
-}
-
-.screen-list-quizzes header,
-.info-quizz header,
-.screen-loading header{
+header{
     width: 100vw;
     height: 69px;
     display: flex;
@@ -441,15 +392,19 @@ body{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.screen-list-quizzes header>h1,
-.info-quizz header>h1,
-.screen-loading header>h1{
+header>h1{
     width: 176px;
     height: 43px;
     font-weight: 700;
     font-size: 37px;
     line-height: 43px;
     color: #FFFFFF;
+}
+
+.screen-list-quizzes{
+    display: none;
+    justify-content: center;
+    overflow-x: hidden;
 }
 
 .screen-list-quizzes main{
@@ -616,7 +571,6 @@ body{
 .card-quizz h2,
 .image-quizz h2{
     width: 301px;
-    height: 54px;
     font-weight: 400;
     font-size: 19px;
     line-height: 22px;
@@ -624,6 +578,8 @@ body{
     align-items: center;
     color: #FFFFFF;
     margin-left: 18px;
+    margin-bottom: 7px;
+    word-break: break-all;
 }
 
 .info-quizz{
@@ -657,7 +613,6 @@ body{
 
 .form-info form{
     width: 100%;
-    height: 256px;
     background-color: #FFFFFF;
     margin-top: 27px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
@@ -680,12 +635,51 @@ body{
     margin-top: 21px;
 }
 
+.form-info form>input:nth-last-of-type(1){
+    margin-bottom: 21px;
+}
+
 .form-info form>input::placeholder{
     font-style: italic;
     font-weight: 400;
     font-size: 19px;
     line-height: 22px;
     color: #BABABA;
+}
+
+.text-validation{
+    display: none;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: -7px;
+    color: #EC362D;
+}
+
+.validation-failed{
+    display: block;
+}
+
+.question>.text-validation,
+.level>.text-validation{
+    margin-top: 0px
+}
+
+.level>p:nth-of-type(4){
+    margin-top: -24px;
+    margin-bottom: 24px;
+}
+
+.question>p:nth-of-type(13){
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+.form-info form>p:nth-last-of-type(1){
+    margin-top: -20px;
+    margin-bottom: 20px;
 }
 
 .form-info button{

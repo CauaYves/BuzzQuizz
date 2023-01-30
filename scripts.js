@@ -4,6 +4,20 @@ let objQuizFinal = {};
 let qtdPerguntas;
 let qtdNiveis;
 
+function sucessoEdicaoQuiz(resposta){
+    document.querySelector(".image-quizz").style.backgroundImage = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${resposta.data.image}), url(imagens/BuzzFeed-Logo.jpeg)`;
+    document.querySelector(".image-quizz h2").innerHTML = resposta.data.title;
+    document.querySelector(".done-quizz button").setAttribute("onclick",`iniciarQuizz(${resposta.data.id});`);
+
+    mudarTela(".done-quizz");
+    window.scrollTo(0,0);
+}
+
+function erroEdicaoQuiz(){
+    alert("Ocorreu um erro durante a edição desse quiz");
+    window.location.reload();
+}
+
 function sucessoCriacaoQuiz(resposta){
     let arrayQuizzesUsuario = [];
 
@@ -30,126 +44,482 @@ function falhaCriacaoQuiz(){
     window.location.reload();
 }
 
+function validarDescricao(inputDescricao, numLevel){
+    let descricao = inputDescricao.value;
+
+    if (descricao.trim() != "" && descricao.length >= 30){
+        inputDescricao.style.backgroundColor = "#FFFFFF";
+        if (document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(4)`).classList.contains("validation-failed")){
+            document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(4)`).classList.remove("validation-failed")
+        }
+        return true;
+    }else{
+        inputDescricao.style.backgroundColor = "#FFE9E9";
+        document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(4)`).classList.add("validation-failed");
+        return false;
+    }
+}
+
+function validarPorcentagemMinima(inputMinValue, numLevel){
+    const minValue = inputMinValue.value;
+
+    if (numLevel == 1){
+        if(parseFloat(minValue) == 0 && minValue.trim() != "" && isNaN(parseFloat(minValue)) == false){
+            inputMinValue.style.backgroundColor = "#FFFFFF";
+            if (document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(2)`).classList.contains("validation-failed")){
+                document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(2)`).classList.remove("validation-failed")
+            }
+            return true;
+        }else{
+            inputMinValue.style.backgroundColor = "#FFE9E9";
+            document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(2)`).classList.add("validation-failed");
+            return false;
+        }
+    }else{
+        if(parseFloat(minValue) > 0 && parseFloat(minValue) <= 100 &&
+        minValue.trim() != "" && isNaN(parseFloat(minValue)) == false){
+            inputMinValue.style.backgroundColor = "#FFFFFF";
+            if (document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(2)`).classList.contains("validation-failed")){
+                document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(2)`).classList.remove("validation-failed")
+            }
+            return true;
+        }else{
+            inputMinValue.style.backgroundColor = "#FFE9E9";
+            document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(2)`).classList.add("validation-failed");
+            return false;
+        }
+    }
+}
+
+function validarTituloNivel(inputTitulo, numLevel){
+    const titulo = inputTitulo.value;
+
+    if (titulo.trim() != "" && titulo.length >= 20){
+        inputTitulo.style.backgroundColor = "#FFFFFF";
+        if (document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(1)`).classList.contains("validation-failed")){
+            document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(1)`).classList.remove("validation-failed")
+        }
+        return true;
+    }else{
+        inputTitulo.style.backgroundColor = "#FFE9E9";
+        document.querySelector(`.level:nth-of-type(${numLevel})>p:nth-of-type(1)`).classList.add("validation-failed");
+        return false;
+    }
+
+}
+
 function finalizarQuiz(){
     let arrayLevels = [];
     let objLevelAtual = {};
+    let formularioValido = true;
 
     for (let i = 0; i < qtdNiveis; i++){
         let questionAtual = document.querySelectorAll(`.area-level .level:nth-of-type(${i+1})>input`);
 
-        console.log(questionAtual);
-        objLevelAtual.title = questionAtual[0].value;
-        objLevelAtual.minValue = parseFloat(questionAtual[1].value);
-        objLevelAtual.image = questionAtual[2].value;
-        objLevelAtual.text = document.querySelector(`.area-level .level:nth-of-type(${i+1})>textarea`).value;
+        let checkTitulo = validarTituloNivel(questionAtual[0], (i+1));
+        let checkMinValue = validarPorcentagemMinima(questionAtual[1], (i+1));
+        let checkImage = validarUrl(questionAtual[2], "níveis", i+1);
+        let checkDescription = validarDescricao(document.querySelector(`.area-level .level:nth-of-type(${i+1})>textarea`), (i+1));
 
-        arrayLevels.push(JSON.parse(JSON.stringify(objLevelAtual)));
+        if (checkTitulo && checkMinValue && checkImage && checkDescription){
+            objLevelAtual.title = questionAtual[0].value;
+            objLevelAtual.minValue = parseFloat(questionAtual[1].value);
+            objLevelAtual.image = questionAtual[2].value;
+            objLevelAtual.text = document.querySelector(`.area-level .level:nth-of-type(${i+1})>textarea`).value;
+    
+            arrayLevels.push(JSON.parse(JSON.stringify(objLevelAtual)));
+        }else{
+            formularioValido = false;
+        }
     }
 
-    objQuizFinal.levels = arrayLevels;
+    if (formularioValido){
+        objQuizFinal.levels = arrayLevels;
 
-    const novoQuiz = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", objQuizFinal);
-    document.querySelector(".screen-loading").classList.add("active");
-    novoQuiz.then(sucessoCriacaoQuiz);
-    novoQuiz.catch(falhaCriacaoQuiz);
+        if (modoEdicao){
+            let objsQuizzes;
+    
+            if (localStorage.getItem('quizzesUsuario') !== null){
+                objsQuizzes = JSON.parse(localStorage.getItem('quizzesUsuario'));
+            }
+        
+            for (let i = 0; i < objsQuizzes.length; i++){
+                if (objsQuizzes[i].id === quizEdicao.id){
+                    const quizEditado = axios.put(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quizEdicao.id}`, objQuizFinal, {headers: {'Secret-Key': objsQuizzes[i].key}});
+                    document.querySelector(".screen-loading").classList.add("active");
+                    quizEditado.then(sucessoEdicaoQuiz);
+                    quizEditado .catch(erroEdicaoQuiz);
+                    break;
+                }
+            }
+        }else{
+            const novoQuiz = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", objQuizFinal);
+            document.querySelector(".screen-loading").classList.add("active");
+            novoQuiz.then(sucessoCriacaoQuiz);
+            novoQuiz.catch(falhaCriacaoQuiz);
+        }
+    }else{
+        window.scrollTo(0,0);
+    }
+}
+
+function validarCor(inputCor, numQuestion){
+    const cor = inputCor.value;
+
+    if(cor.trim() != ""){
+        const regex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i;
+        if (regex.test(cor)){
+            inputCor.style.backgroundColor = "#FFFFFF";
+            if (document.querySelector(`.question:nth-of-type(${numQuestion}) .text-validation:nth-of-type(3)`).classList.contains("validation-failed")){
+                document.querySelector(`.question:nth-of-type(${numQuestion}) .text-validation:nth-of-type(3)`).classList.remove("validation-failed")
+            }
+            return true;
+        }else{
+            inputCor.style.backgroundColor = "#FFE9E9";
+            document.querySelector(`.question:nth-of-type(${numQuestion}) .text-validation:nth-of-type(3)`).classList.add("validation-failed");
+            return false;
+        }
+    }else{
+        inputCor.style.backgroundColor = "#FFE9E9";
+        document.querySelector(`.question:nth-of-type(${numQuestion}) .text-validation:nth-of-type(3)`).classList.add("validation-failed");
+        return false;
+    }
+}
+
+function validarTituloPerguntas(inputTituloPergunta, numQuestion){
+    const tituloPergunta = inputTituloPergunta.value;
+
+    if (tituloPergunta.trim() != "" && tituloPergunta.length >= 20){
+        inputTituloPergunta.style.backgroundColor = "#FFFFFF";
+        if (document.querySelector(`.question:nth-of-type(${numQuestion}) .text-validation:nth-of-type(2)`).classList.contains("validation-failed")){
+            document.querySelector(`.question:nth-of-type(${numQuestion}) .text-validation:nth-of-type(2)`).classList.remove("validation-failed")
+        }
+        return true;
+    }else{
+        inputTituloPergunta.style.backgroundColor = "#FFE9E9";
+        document.querySelector(`.question:nth-of-type(${numQuestion}) .text-validation:nth-of-type(2)`).classList.add("validation-failed");
+        return false;
+    }
+}
+
+function validarResposta(inputTexto, inputURL, numInput, numQuestion){
+    const texto = inputTexto.value;
+    let valido = true;
+
+    if (texto.trim() != ""){
+        inputTexto.style.backgroundColor = "#FFFFFF";
+        if(numInput === 2){
+            if (document.querySelector(`.question:nth-of-type(${numQuestion})>p:nth-of-type(5)`).classList.contains("validation-failed")){
+                document.querySelector(`.question:nth-of-type(${numQuestion})>p:nth-of-type(5)`).classList.remove("validation-failed");
+            }
+        }else{
+            if (document.querySelector(`.question:nth-of-type(${numQuestion})>p:nth-of-type(${numInput+4})`).classList.contains("validation-failed")){
+                document.querySelector(`.question:nth-of-type(${numQuestion})>p:nth-of-type(${numInput+4})`).classList.remove("validation-failed");
+            }
+        }
+    }else{
+        inputTexto.style.backgroundColor = "#FFE9E9";
+        if(numInput === 2){
+            document.querySelector(`.question:nth-of-type(${numQuestion})>p:nth-of-type(5)`).classList.add("validation-failed");
+        }else{
+            document.querySelector(`.question:nth-of-type(${numQuestion})>p:nth-of-type(${numInput+4})`).classList.add("validation-failed");
+        }
+        valido = false;
+    }
+
+    const url = validarUrl(inputURL, "perguntas", numQuestion, numInput);
+
+    if (url && valido){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 function criarPerguntas(proxPagina){
     let arrayQuestions = [];
     let objQuestionAtual = {};
-    let objRespostasAtuais = {};
     let respostasAtuais = [];
+    let objRespostasAtuais = {};
+    let formularioValido = true;
+    let questionAtualValido;
 
     for (let i = 0; i < qtdPerguntas; i++){
+        questionAtualValido = true;
         let questionAtual = document.querySelectorAll(`.area-question .question:nth-of-type(${i+1})>input`);
-        objQuestionAtual.title = questionAtual[0].value;
-        objQuestionAtual.color = questionAtual[1].value;
+
+        let checkTitulo = validarTituloPerguntas(questionAtual[0], (i+1));
+        let checkColor = validarCor(questionAtual[1], (i+1));
+        if (checkTitulo && checkColor){
+            objQuestionAtual.title = questionAtual[0].value;
+            objQuestionAtual.color = questionAtual[1].value;
+        }else{
+            formularioValido = false;
+            questionAtualValido = false;
+        }
+
         respostasAtuais = [];
         for (let j = 2; j <= 9; j = j+2){
-            if(questionAtual[j].value.trim() != "" && questionAtual[j+1].value.trim() != ""){
-                objRespostasAtuais.text = questionAtual[j].value;
-                objRespostasAtuais.image = questionAtual[j+1].value;
-                if (j == 2){
+            if (j === 2){
+                if (validarResposta(questionAtual[j], questionAtual[j+1], j, i+1)){
+                    objRespostasAtuais.text = questionAtual[j].value;
+                    objRespostasAtuais.image = questionAtual[j+1].value;
                     objRespostasAtuais.isCorrectAnswer = true;
+                    if (questionAtualValido){
+                        respostasAtuais.push(JSON.parse(JSON.stringify(objRespostasAtuais)));
+                    }
                 }else{
-                    objRespostasAtuais.isCorrectAnswer = false;
+                    formularioValido = false;
+                    questionAtualValido = false;
                 }
-                respostasAtuais.push(JSON.parse(JSON.stringify(objRespostasAtuais)));
+            }else if(questionAtual[j].value.trim() != "" && questionAtual[j+1].value.trim() != "" ||
+            questionAtual[j].value.trim() != "" && questionAtual[j+1].value.trim() == "" ||
+            questionAtual[j].value.trim() == "" && questionAtual[j+1].value.trim() != "") {
+                if(validarResposta(questionAtual[j], questionAtual[j+1], j, i+1)){
+                    objRespostasAtuais.text = questionAtual[j].value;
+                    objRespostasAtuais.image = questionAtual[j+1].value;
+                    objRespostasAtuais.isCorrectAnswer = false;
+                    if (questionAtualValido){
+                        respostasAtuais.push(JSON.parse(JSON.stringify(objRespostasAtuais)));
+                    }
+                }else{
+                    formularioValido = false;
+                    questionAtualValido = false;
+                }
             }
         }
 
-        objQuestionAtual.answers = respostasAtuais;
-        arrayQuestions.push(JSON.parse(JSON.stringify(objQuestionAtual)));
+        if(respostasAtuais.length < 2){
+            questionAtualValido = false;
+            document.querySelector(`.question:nth-of-type(${i+1})>p:nth-of-type(1)`).classList.add("validation-failed");
+        }else{
+            if (document.querySelector(`.question:nth-of-type(${i+1})>p:nth-of-type(1)`).classList.contains("validation-failed")){
+                document.querySelector(`.question:nth-of-type(${i+1})>p:nth-of-type(1)`).classList.remove("validation-failed");
+            }
+        }
+
+        if (questionAtualValido){
+            objQuestionAtual.answers = respostasAtuais;
+            arrayQuestions.push(JSON.parse(JSON.stringify(objQuestionAtual)));
+        }
     }
 
-    objQuizFinal.questions = arrayQuestions;
+    if (formularioValido){
+        objQuizFinal.questions = arrayQuestions;
+        mudarTela(proxPagina);
+        window.scrollTo(0,0);
+    }else{
+        window.scrollTo(0,0);
+    }
 
-    const telaAtual = document.querySelectorAll('.active');
-    telaAtual.forEach((telaAtual) => {
-    telaAtual.classList.remove('active');
-    });
+}
 
-    document.querySelector(proxPagina).classList.add("active");
-    window.scrollTo(0,0);
+function validarQtd(inputQtd, tipo){
+    const qtd = inputQtd.value;
+
+    if (tipo === "perguntas" && qtd.trim() != "" && !isNaN(parseInt(qtd)) && parseInt(qtd) >= 3){
+        inputQtd.style.backgroundColor = "#FFFFFF";
+        if (document.querySelector(".info-quizz p:nth-of-type(3)").classList.contains("validation-failed")){
+            document.querySelector(".info-quizz p:nth-of-type(3)").classList.remove("validation-failed")
+        }
+        return true;
+    }else if (tipo === "níveis" && qtd.trim() != "" && !isNaN(parseInt(qtd)) && parseInt(qtd) >= 2){
+        inputQtd.style.backgroundColor = "#FFFFFF";
+        if (document.querySelector(".info-quizz p:nth-of-type(4)").classList.contains("validation-failed")){
+            document.querySelector(".info-quizz p:nth-of-type(4)").classList.remove("validation-failed")
+        }
+        return true;
+    }else{
+        inputQtd.style.backgroundColor = "#FFE9E9";
+        if (tipo === "perguntas"){
+            document.querySelector(".info-quizz p:nth-of-type(3)").classList.add("validation-failed");
+        }else{
+            document.querySelector(".info-quizz p:nth-of-type(4)").classList.add("validation-failed");
+        }
+        return false;
+    }
+}
+
+function validarUrl(inputURL, tela, numElemento = 0, numPerguntas = 0){
+    const url = inputURL.value;
+    if (url != null && url.trim() != '') {
+        let regex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+        if(regex.test(url)){
+            inputURL.style.backgroundColor = "#FFFFFF";
+            if (tela === "info-inicial"){
+                if (document.querySelector(".info-quizz p:nth-of-type(2)").classList.contains("validation-failed")){
+                    document.querySelector(".info-quizz p:nth-of-type(2)").classList.remove("validation-failed");
+                }
+            }else if(tela === "perguntas"){
+                if (numPerguntas == 2){
+                    if (document.querySelector(`.question:nth-of-type(${numElemento})>p:nth-of-type(6)`).classList.contains("validation-failed")){
+                        document.querySelector(`.question:nth-of-type(${numElemento})>p:nth-of-type(6)`).classList.remove("validation-failed");
+                    }
+                }else{
+                    if (document.querySelector(`.question:nth-of-type(${numElemento})>p:nth-of-type(${numPerguntas+5})`).classList.contains("validation-failed")){
+                        document.querySelector(`.question:nth-of-type(${numElemento})>p:nth-of-type(${numPerguntas+5})`).classList.remove("validation-failed");
+                    }
+                }
+            }else{
+                if (document.querySelector(`.level:nth-of-type(${numElemento})>p:nth-of-type(3)`).classList.contains("validation-failed")){
+                    document.querySelector(`.level:nth-of-type(${numElemento})>p:nth-of-type(3)`).classList.remove("validation-failed");
+                }
+            }
+            return true;
+        }else{
+            inputURL.style.backgroundColor = "#FFE9E9";
+            if (tela === "info-inicial"){
+                document.querySelector(".info-quizz p:nth-of-type(2)").classList.add("validation-failed");
+            }else if(tela === "perguntas"){
+                if (numPerguntas == 2){
+                    document.querySelector(`.question:nth-of-type(${numElemento})>p:nth-of-type(6)`).classList.add("validation-failed");
+                }else{
+                    document.querySelector(`.question:nth-of-type(${numElemento})>p:nth-of-type(${numPerguntas+5})`).classList.add("validation-failed");
+                }
+            }else{
+                document.querySelector(`.level:nth-of-type(${numElemento})>p:nth-of-type(3)`).classList.add("validation-failed");
+            }
+            return false;
+        }
+    }else{
+        inputURL.style.backgroundColor = "#FFE9E9";
+        if (tela === "info-inicial"){
+            document.querySelector(".info-quizz p:nth-of-type(2)").classList.add("validation-failed");
+        }else if(tela === "perguntas"){
+            if (numPerguntas == 2){
+                document.querySelector(`.question:nth-of-type(${numElemento})>p:nth-of-type(6)`).classList.add("validation-failed");
+            }else{
+                document.querySelector(`.question:nth-of-type(${numElemento})>p:nth-of-type(${numPerguntas+5})`).classList.add("validation-failed");
+            }
+        }else{
+            document.querySelector(`.level:nth-of-type(${numElemento})>p:nth-of-type(3)`).classList.add("validation-failed");
+        }
+        return false;
+    }
+}
+
+function validarTitulo(inputTitulo){
+    const titulo = inputTitulo.value;
+    if(titulo.trim() != "" && titulo.length >= 20 && titulo.length <= 65){
+        inputTitulo.style.backgroundColor = "#FFFFFF";
+        if (document.querySelector(".info-quizz p:nth-of-type(1)").classList.contains("validation-failed")){
+            document.querySelector(".info-quizz p:nth-of-type(1)").classList.remove("validation-failed")
+        }
+        return true;
+    }else{
+        inputTitulo.style.backgroundColor = "#FFE9E9";
+        document.querySelector(".info-quizz p:nth-of-type(1)").classList.add("validation-failed");
+        return false;
+    }
 }
 
 function informacoesIniciaisQuiz(proxPagina){
     const arrayInput = document.querySelectorAll(".info-quizz input");
 
-    //Precisa fazer as validações
+    const checkTitulo = validarTitulo(arrayInput[0]);
+    const checkURL = validarUrl(arrayInput[1],"info-inicial");
+    const checkPerguntas = validarQtd(arrayInput[2], "perguntas");
+    const checkNiveis = validarQtd(arrayInput[3], "níveis");
 
-    objQuizFinal.title = arrayInput[0].value;
-    objQuizFinal.image = arrayInput[1].value;
-    qtdPerguntas = parseInt(arrayInput[2].value);
-    qtdNiveis = parseInt(arrayInput[3].value);
+    if (checkTitulo && checkURL && checkPerguntas && checkNiveis){
+        objQuizFinal.title = arrayInput[0].value;
+        objQuizFinal.image = arrayInput[1].value;
+        qtdPerguntas = parseInt(arrayInput[2].value);
+        qtdNiveis = parseInt(arrayInput[3].value);
 
-    const areaQuestion = document.querySelector(".area-question");
-    const areaLevel = document.querySelector(".area-level");
+        const areaQuestion = document.querySelector(".area-question");
+        const areaLevel = document.querySelector(".area-level");
 
-    for (let i = 0; i < qtdPerguntas; i++){
-        areaQuestion.innerHTML += `<form class="question">
-            <div class="title-form">
-                <p>Pergunta ${i+1}</p>
-                <ion-icon name="open-outline"></ion-icon>
-            </div>
-            <input type="text" placeholder="Texto da pergunta">
-            <input type="text" placeholder="Cor de fundo da pergunta">
-            <p>Resposta correta</p>
-            <input type="text" placeholder="Resposta correta">
-            <input type="text" placeholder="URL da imagem">
-            <p>Respostas incorretas</p>
-            <input type="text" placeholder="Resposta incorreta 1">
-            <input type="text" placeholder="URL da imagem 1">
-            <input type="text" placeholder="Resposta incorreta 2">
-            <input type="text" placeholder="URL da imagem 2">
-            <input type="text" placeholder="Resposta incorreta 3">
-            <input type="text" placeholder="URL da imagem 3">
-        </form>`
+        for (let i = 0; i < qtdPerguntas; i++){
+            areaQuestion.innerHTML += `<form class="question">
+                <div class="title-form">
+                    <p>Pergunta ${i+1}</p>
+                </div>
+                <p class="text-validation">É necessário ter pelo menos duas respostas, sendo uma delas a resposta correta.</p>
+                <input type="text" placeholder="Texto da pergunta">
+                <p class="text-validation">O título da sua pergunta precisa ter, pelo menos, 20 caracteres.</p>
+                <input type="text" placeholder="Cor de fundo da pergunta">
+                <p class="text-validation">A cor de fundo da sua pergunta precisa estar no formato hexadecimal.</p>
+                <p>Resposta correta</p>
+                <input type="text" placeholder="Resposta correta">
+                <p class="text-validation">Este campo não pode ficar vazio.</p>
+                <input type="text" placeholder="URL da imagem">
+                <p class="text-validation">O valor informado não é uma URL válida.</p>
+                <p>Respostas incorretas</p>
+                <input type="text" placeholder="Resposta incorreta 1">
+                <p class="text-validation">Este campo não pode ficar vazio, caso tenha digitado uma URL.</p>
+                <input type="text" placeholder="URL da imagem 1">
+                <p class="text-validation">O valor informado não é uma URL válida.</p>
+                <input type="text" placeholder="Resposta incorreta 2">
+                <p class="text-validation">Este campo não pode ficar vazio, caso tenha digitado uma URL.</p>
+                <input type="text" placeholder="URL da imagem 2">
+                <p class="text-validation">O valor informado não é uma URL válida.</p>
+                <input type="text" placeholder="Resposta incorreta 3">
+                <p class="text-validation">Este campo não pode ficar vazio, caso tenha digitado uma URL.</p>
+                <input type="text" placeholder="URL da imagem 3">
+                <p class="text-validation">O valor informado não é uma URL válida.</p>
+            </form>`
+        }
+
+        areaQuestion.innerHTML += `<button onclick="criarPerguntas(${"'.quizzlvl'"});">Prosseguir pra criar níveis</button>`;
+        
+        for (let j = 0; j < qtdNiveis; j++){
+            areaLevel.innerHTML += `<form class="level">
+                <div class="title-form">
+                    <p>Nível ${j+1}</p>
+                </div>
+                <input type="text" placeholder="Titulo do nível">
+                <p class="text-validation">O título do nível do seu quizz precisa ter, pelo menos, 20 caracteres.</p>
+                <input type="text" placeholder="% de acerto mínima">
+                <p class="text-validation">Digite apenas valores entre 0 e 100. Lembre-se, o nível 1 precisa ter, obrigatoriamente, 0 como porcentagem mínima.</p>
+                <input type="text" placeholder="URL da imagem do nível">
+                <p class="text-validation">O valor informado não é uma URL válida.</p>
+                <textarea class="text-box" cols="30" rows="10" placeholder="Descrição do nível"></textarea>
+                <p class="text-validation">A descrição do nível do seu quizz precisa ter, pelo menos, 30 caracteres.</p>
+            </form>`
+        }
+
+        areaLevel.innerHTML += `<button onclick="finalizarQuiz(${"'.done-quizz'"});">Finalizar Quizz</button>`;
+
+        if (modoEdicao){
+            let menorQtd;
+            const questionsEdicao = quizEdicao.questions;
+            if (qtdPerguntas <= questionsEdicao.length){
+                menorQtd = qtdPerguntas;
+            }else{
+                menorQtd = questionsEdicao.length;
+            }
+            for (let k = 0; k < menorQtd; k++){
+                let inputs = document.querySelectorAll(`.question:nth-of-type(${k+1})>input`);
+                inputs[0].value = questionsEdicao[k].title;
+                inputs[1].value = questionsEdicao[k].color;
+                let cont = 0;
+                for (let l = 0; l < questionsEdicao[k].answers.length*2; l += 2){
+                    inputs[l+2].value = questionsEdicao[k].answers[cont].text;
+                    inputs[l+3].value = questionsEdicao[k].answers[cont].image;
+                    cont++;
+                }
+            }
+
+            const levelsEdicao = quizEdicao.levels;
+            if (qtdNiveis <= levelsEdicao.length){
+                menorQtd = qtdNiveis;
+            }else{
+                menorQtd = levelsEdicao.length;
+            }
+            for (let m = 0; m < menorQtd; m++){
+                let inputsLevels = document.querySelectorAll(`.level:nth-of-type(${m+1})>input`);
+                let textArea = document.querySelector(`.level:nth-of-type(${m+1})>textarea`);
+
+                inputsLevels[0].value = levelsEdicao[m].title;
+                inputsLevels[1].value = levelsEdicao[m].minValue;
+                inputsLevels[2].value = levelsEdicao[m].image;
+                textArea.value = levelsEdicao[m].text;
+            }
+        }
+
+        mudarTela(proxPagina);
     }
-
-    areaQuestion.innerHTML += `<button onclick="criarPerguntas(${"'.quizzlvl'"});">Prosseguir pra criar níveis</button>`;
-    
-    for (let j = 0; j < qtdNiveis; j++){
-        areaLevel.innerHTML += `<form class="level">
-            <div class="title-form">
-                <p>Nível ${j+1}</p>
-                <ion-icon name="open-outline"></ion-icon>
-            </div>
-            <input type="text" placeholder="Titulo do nível">
-            <input type="text" placeholder="% de acerto mínima">
-            <input type="text" placeholder="URL da imagem do nível">
-            <textarea class="text-box" cols="30" rows="10" placeholder="Descrição do nível"></textarea>
-        </form>`
-    }
-
-    areaLevel.innerHTML += `<button onclick="finalizarQuiz(${"'.done-quizz'"});">Finalizar Quizz</button>`;
-
-    const telaAtual = document.querySelectorAll('.active');
-    telaAtual.forEach((telaAtual) => {
-    telaAtual.classList.remove('active');
-    });
-
-    document.querySelector(proxPagina).classList.add("active");
 }
 
 //Fim - JS TELAS 3.1/3.2/3.3/3.4
@@ -310,8 +680,10 @@ function iniciarQuizz(id){
 
 //Fim - JS TELA 2
 
-
 //Começo - JS TELA 1
+
+let modoEdicao = false;
+let quizEdicao;
 
 function mudarTela(classe){
     
@@ -320,6 +692,32 @@ function mudarTela(classe){
     telaAtual.classList.remove('active');
     });
     document.querySelector(classe).classList.add("active");
+}
+
+function sucessoRecuperacaoQuizz(resposta){
+    const arrayInput = document.querySelectorAll(".info-quizz input");
+
+    arrayInput[0].value = resposta.data.title;
+    arrayInput[1].value = resposta.data.image;
+    arrayInput[2].value = resposta.data.questions.length;
+    arrayInput[3].value = resposta.data.levels.length;
+
+    quizEdicao = resposta.data;
+    mudarTela(".info-quizz");
+}
+
+function falhaRecuperacaoQuizz(){
+    alert("Ocorreu uma falha durante a recuperação do quiz");
+    window.location.reload();
+}
+
+function editarQuizz(id, event){
+    modoEdicao = true;
+
+    const quizAtual = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
+    quizAtual.then(sucessoRecuperacaoQuizz);
+    quizAtual.catch(falhaRecuperacaoQuizz);
+    event.stopPropagation();
 }
 
 function sucessoExclusaoQuiz(){
@@ -389,7 +787,7 @@ function sucessoRequisicaoQuizzes(resposta){
         document.querySelector(".area-creation-quizz").classList.add("active");
     }else{
         for (j = 0; j < quizzesUsuario.length; j++){
-            areaUsuarioQuizzes.innerHTML += `<div class="card-quizz" onclick="iniciarQuizz(${quizzesUsuario[j].id});"> <h2>${quizzesUsuario[j].title}</h2> <div class="options-quizzes"> <div><img src="imagens/Edit.png"/></div> <div onclick="excluirQuizz(${quizzesUsuario[j].id}, event)"><img src="imagens/Trash.png"/></div></div></div>`;
+            areaUsuarioQuizzes.innerHTML += `<div class="card-quizz" onclick="iniciarQuizz(${quizzesUsuario[j].id});"> <h2>${quizzesUsuario[j].title}</h2> <div class="options-quizzes"> <div onclick="editarQuizz(${quizzesUsuario[j].id}, event)"><img src="imagens/Edit.png"/></div> <div onclick="excluirQuizz(${quizzesUsuario[j].id}, event)"><img src="imagens/Trash.png"/></div></div></div>`;
             document.querySelector(".my-quizzes .card-quizz:nth-last-child(1)").style.backgroundImage = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizzesUsuario[j].image}), url(imagens/BuzzFeed-Logo.jpeg)`;
         }
         document.querySelector(".screen-list-quizzes").classList.add("active");
@@ -419,6 +817,7 @@ solicitando todos os quizzes já feitos
 function obterQuizzesServidor(){
     const quizzes = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
 
+    modoEdicao = false;
     document.querySelector(".screen-loading").classList.add("active");
 
     quizzes.then(sucessoRequisicaoQuizzes);

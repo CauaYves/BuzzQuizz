@@ -16,12 +16,12 @@
 </head>
 
 <body>
+    <header>
+        <h1>BuzzQuizz</h1>
+    </header>
 
     <!--Começo - HTML TELA 1-->
     <div class="screen-loading">
-        <header>
-            <h1>BuzzQuizz</h1>
-        </header>
         <section>
             <img src="imagens/Loading-spin.gif"/>
             <p>Carregando</p>
@@ -29,9 +29,6 @@
     </div>
 
     <div class="screen-list-quizzes">
-        <header>
-            <h1>BuzzQuizz</h1>
-        </header>
         <main>
             <section class="area-creation-quizz">
                 <p>Você não criou nenhum quizz ainda :(</p>
@@ -58,8 +55,7 @@
 
     <!--Começo - HTML TELA 2-->
     <!--quizz page screen-->
-    <div class="screen-quizz">
-        <header><h1>BuzzQuizz</h1></header>        
+    <div class="screen-quizz">      
             <section class="content-quizz">
             <div class="title-quizz"><h2></h2></div>                
                 <div class="questions">
@@ -79,17 +75,18 @@
 
     <!--Começo - HTML TELA 3.1-->
     <div class="info-quizz">
-        <header>
-            <h1>BuzzQuizz</h1>
-        </header>
         <main>
             <section class="form-info">
                 <h2>Crie suas perguntas</h2>
                 <form>
-                    <input placeholder="Título do seu quizz" minlength="20" maxlength="65"/>
+                    <input placeholder="Título do seu quizz"/>
+                    <p class="text-validation">O título do seu quizz precisa ter entre 20 e 65 caracteres.</p>
                     <input placeholder="URL da imagem do seu quizz"/>
+                    <p class="text-validation">O valor informado não é uma URL válida.</p>
                     <input placeholder="Quantidade de perguntas do quizz"/>
+                    <p class="text-validation">O quizz deve ter no mínimo 3 perguntas.</p>
                     <input placeholder="Quantidade de níveis do quizz" />
+                    <p class="text-validation">O quizz deve ter no mínimo 2 níveis.</p>
                 </form>
                 <button onclick="informacoesIniciaisQuiz('.creation-quizz');">Prosseguir pra criar perguntas</button>
             </section>
@@ -99,9 +96,6 @@
 
     <!--Começo - HTML TELA 3.2-->
     <div class="creation-quizz">
-        <header>
-            <h1>BuzzQuizz</h1>
-        </header>
         <section class="area-question">
             <p>Crie suas perguntas</p>
         </section>
@@ -110,10 +104,6 @@
 
     <!--Começo - HTML TELA 3.3-->
     <div class="quizzlvl">
-        <header>
-            <h1>BuzzQuizz</h1>
-        </header>
-
         <section class="area-level">
             <p>Agora, decida os níveis</p>
         </section>
@@ -122,9 +112,6 @@
 
     <!--Começo - HTML TELA 3.4-->
     <div class="done-quizz">
-        <header>
-            <h1>BuzzQuizz</h1>
-        </header>
         <section class="area-done">
             <p>Seu quizz está pronto!</p>
             <div class="image-quizz">
