@@ -87,10 +87,11 @@ Status do Projeto: Em desenvolvimento ⚠️
 ### Como rodar o projeto
 
 No terminal, clone o projeto: 
-* **https://github.com/CauaYves/projeto6-.git**  
+    `https://github.com/CauaYves/projeto6-.git`
 
 Entre na pasta do projeto:  
-* cd projeto6-BuzzQuizz
+    `cd projeto6-BuzzQuizz`
   
-Abra no navegador o aquivo * Index.html   
+Abra no navegador o aquivo    
+    `Index.html`   
 
