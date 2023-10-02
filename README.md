@@ -1,6 +1,11 @@
 <h1 align='center'>Buzz Quizz</h1>  
 <h6 align='center'>Projeto feito em grupo incentivando o uso das tecnologias para navegação entre páginas web.</h6>   
 
+# Tecnologias
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+
 ### Tela inicial
 
 ![image](https://user-images.githubusercontent.com/108950428/215355525-9d8be3de-2b03-4d88-9e13-4f8f1b54972f.png)
